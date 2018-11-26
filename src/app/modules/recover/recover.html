@@ -1,0 +1,119 @@
+<div class="signup-page">
+    <div class="container container-top">
+        <div class="wh-form-wrap" ng-show="$ctrl.infopopup">
+            <div class="wh-tab-content">
+                <div class="container-494">
+                    <div class="reg-why-basic-wallet">
+                        <h2 class="page-blue-title">{{'RECOVER_WALLET_INFO' | translate }}</h2>
+                        <span class="detail-wrap">{{ 'RECOVER_WALLET_P1' | translate }}</span>
+
+                        <fieldset class="form-group">
+                            <div class="label-info">
+                                <label for="namespaceParent" class="control-label">{{'FORM_WALLET_NAME_FIELD_PLACEHOLDER' | translate}}</label>
+                            </div>
+                            <input class="form-control" type="text" placeholder="{{'FORM_WALLET_NAME_FIELD_PLACEHOLDER' | translate}}" ng-model="$ctrl.formData.walletName" />
+                        </fieldset>
+                        <!-- PRIVATE KEY OF ADDRESS TO ADD -->
+                        <fieldset class="form-group">
+                            <div class="label-info">
+                                <label for="namespaceParent" class="control-label">{{ 'FORM_PRIVATE_KEY_FIELD_PLACEHOLDER' | translate }}</label>
+                                <span><img src="images/info-o.png" style="cursor:pointer;" ng-click="$ctrl.popup()"></span>
+                            </div>
+                            <input class="form-control pwd" type="password" placeholder="{{'FORM_PRIVATE_KEY_FIELD_PLACEHOLDER' | translate}}" ng-model="$ctrl.formData.privateKey" ng-change="$ctrl.generateAddress();" />
+                        </fieldset>
+                        <!-- ADDRESS TO ADD -->
+                        <fieldset class="form-group" ng-show="$ctrl.formData.address.length">
+                            <div class="label-info">
+                                <label for="namespaceParent" class="control-label">
+                    {{'FORM_ADDRESS_FIELD_PLACEHOLDER' | translate}}
+                  </label>
+                            </div>
+                            <input class="form-control" type="text" ng-model="$ctrl.formData.address" readOnly/>
+                        </fieldset>
+                        <!-- SELECT NETWORK -->
+                        <fieldset class="form-group">
+                            <div class="label-info">
+                                <label for="namespaceParent" class="control-label">{{'SIGNUP_NETWORK_SELECT' | translate}}</label>
+                            </div>
+                            <select class="form-control" ng-model="$ctrl.network" ng-change="$ctrl.changeNetwork($ctrl.network);$ctrl.generateAddress();" ng-options="network.id as (network.id | toNetworkName) for network in $ctrl.networks">
+                    <option value="" disabled selected>{{'SIGNUP_NETWORK_SELECT' | translate}}</option>
+                  </select>
+                        </fieldset>
+                        <!-- PASSWORD FIELD -->
+                        <fieldset class="form-group">
+                            <div class="label-info">
+                                <label for="namespaceParent" class="control-label">{{ 'FORM_PASSWORD' | translate }} </label>
+                            </div>
+                            <input class="form-control" type="password" placeholder="{{'FORM_SIGNUP_PASSWORD_FIELD_PLACEHOLDER' | translate}}" ng-model="$ctrl.formData.password" />
+                        </fieldset>
+                        <!-- PASSWORD FIELD CONFIRM -->
+                        <fieldset class="form-group">
+                            <div class="label-info">
+                                <label for="namespaceParent" class="control-label">{{ 'FORM_PASSWORD_CONFIRM' | translate }} </label>
+                            </div>
+                            <input class="form-control" type="password" placeholder="{{'FORM_CONFIRM_PASSWORD_FIELD_PLACEHOLDER' | translate}}" ng-model="$ctrl.formData.confirmPassword" />
+                        </fieldset>
+                        <!-- CONFIRM BUTTON -->
+                        <fieldset class="form-group">
+                            <button class="btn btn-lg btn-success btn-block blue-wallet-btn " type="submit" ng-click="$ctrl.createPrivateKeyWallet()">
+                              {{'RECOVER_WALLET_INFO' | translate}}
+                              <!-- <i class="fa {{$ctrl.arrowclass}}"></i> </button> -->
+                        </fieldset>
+                        <div class="process-bar-wrap" ><div class="process-bar green"></div></div>
+
+                        <a id="downloadWallet" target="_blank"></a>
+
+
+
+
+
+                        <!-- <div ng-show="true"> -->
+                        <!-- <fieldset class="form-group" ng-show="$ctrl.flagprivatekey">
+                <div class="label-info">
+                  <label  for="namespaceParent" class="control-label">{{ 'FORM_PRIVATE_KEY_FIELD_PLACEHOLDER' | translate }}</label>
+                  <span><img src="images/info-o.png" style="cursor:pointer;" ng-click="$ctrl.popup()"></span>
+                </div>
+                <input class="form-control pwd"
+                  type="text"
+                  placeholder="{{ 'ACCOUNT_WARNING_4' | translate }}"
+                  ng-model="$ctrl.privateKey"
+                  >
+              </fieldset> -->
+                        <!--
+              <fieldset class="form-group" ng-show="!$ctrl.flagprivatekey">
+                <div class="label-info">
+                  <label  for="namespaceParent" class="control-label">{{ 'FORM_PASSWORD' | translate }}</label>
+                  <span><img src="images/info-o.png"></span>
+                </div>
+                  <input class="form-control"
+                   type="password"
+                   ng-model="$ctrl.common.password"
+                   placeholder="{{ 'FORM_PASSWORD_FIELD_PLACEHOLDER' | translate }}"/>
+              </fieldset>
+
+              <fieldset class="form-group"  ng-show="$ctrl.flagprivatekey">
+                  <button class="btn btn-lg btn-success btn-block blue-wallet-btn" type="submit" ng-click="$ctrl.changenext()">{{ 'RECOVER_WALLET_INFO' | translate }}</button>
+              </fieldset>
+                  <button class="btn btn-lg btn-success btn-block blue-wallet-btn" type="submit" ng-click="$ctrl.checkprivatekey()">{{ 'ACCOUNT_BACKUP_WALLET_DOWNLOAD' | translate }}</button>
+            </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wh-form-wrap padding-20" ng-show="!$ctrl.infopopup">
+            <div class="wh-tab-content acc-safety">
+                <div class="icon" ng-click="$ctrl.popup() ">
+                    <img src="images/close-o.png" class="icon-close" />
+                </div>
+                <div class="container-585">
+
+                    <fieldset class="reg-why-basic-wallet">
+                      <h2 class="page-blue-title">{{ 'RECOVER_PASSWORD_REQ' | translate}}</h2>
+                        <label class="text-color-gray" ng-bind-html="'RECOVER_PASSWORD_ANSWER_1' | translate"></label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

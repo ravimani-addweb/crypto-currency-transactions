@@ -1,0 +1,358 @@
+/**
+ * @file
+ * SCSS file to generate CSS.
+ *
+ * Form SCSS
+ */
+
+.sm-font {
+  font-size: 18px !important;
+}
+.text-success{
+  padding: 6px 1px;
+}
+.text-danger{
+  padding: 6px 1px;
+}
+.text-info{
+  padding: 7px 1px;
+}
+.box-pad{
+    padding: 2px 1px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='tel'],
+textarea,
+select,
+.form-control {
+  /*height: 30px;
+  padding: 4px 12px;
+  border-color: $black;
+  background-color: $white;
+  @include border-radius(0);
+  @include box-shadow(none);
+  &.throbbing {
+    background-repeat: no-repeat;
+  }*/
+}
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='number']:focus,
+input[type='tel']:focus,
+textarea:focus,
+select:focus,
+.form-control:focus {
+  /*border-color: $black;
+  @include box-shadow(0 1px 2px rgba(0, 0, 0, .2));*/
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='tel'],
+textarea {
+  /*@include appearance(none);*/
+}
+
+
+/* Custom Checkbox design */
+.input-rc {
+  position: relative;
+  display: inline-block;
+  input[type="checkbox"] {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 9999;
+    + .input-rc-span {
+      float: left;
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+      /*margin: 0 10px -15px 0;*/
+      margin: 0 0 0 10px;
+      background-image: url('../images/checkbox-unchecked.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      cursor: pointer;
+      content: ‘’;
+      @media (max-width: 640px) {
+        height: 20px;
+        width: 20px;
+      }
+    }
+    &:checked {
+      + .input-rc-span {
+        background-image: url('../images/checkbox-checked.png');
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+
+.checkbox-colored {
+  label {
+    font-size: 20px;
+  }
+  .input-rc {
+    input[type="radio"] {
+      @extend input[type="checkbox"];
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+      + .input-rc-span {
+        margin-right: 10px;
+        margin-left: 0;
+        background-color: $white;
+      }
+      &:checked {
+        + .input-rc-span {
+          background-image: none;
+          background-color: $orange;
+        }
+      }
+    }
+  }
+}
+
+
+/* Inline button (two button: back and continue) */
+// .inline-btn {
+//   .btn {
+//     display: inline-block;
+//   }
+// }
+
+
+/* Collapse dropdown */
+.collapse-dropdown {
+  position: relative;
+  display: inline-block;
+  // height: 44px;
+  width: 100%;
+  margin-bottom: 5px;
+  border: 1px solid rgba(138, 138, 135, 0.5) !important;
+  .collapse-title {
+    display: inline-block;
+    min-height: 42px;
+    width: 100%;
+    margin: 0;
+    padding: 10px 40px 10px 15px;
+    color: $gray-3c;
+    border-bottom: 1px solid rgba(138, 138, 135, 0.5) !important;
+    @extend select.down-arrow-select;
+  }
+  .collapse-content {
+    position: absolute;
+    top: 41px;
+    left: 0;
+    z-index: 11;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #FFF;
+    border: 1px solid rgba(138, 138, 135, 0.5) !important;
+    ul {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      // column-count: 2;
+      // @media (max-width: 480px) {
+      //   width: 100%;
+      //   // column-count: 1;
+      // }
+      li {
+        display: inline-block;
+        width: 50%;
+        margin-top: 7px;
+        margin-bottom: 7px;
+        @media (max-width: 480px) {
+          width: 100%;
+          // column-count: 1;
+        }
+        label {
+          cursor: pointer;
+        }
+      }
+    }
+    .color-selector {
+      width: 100%;
+      // column-count: 1;
+      li {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+        font-size: 18px;
+        color: $white;
+        &.default {
+          color: $orange;
+        }
+      }
+    }
+  }
+  &.language-dropdown {
+    .collapse-title {
+      text-transform: uppercase;
+    }
+    .collapse-content {
+      // position: absolute;
+      // top: auto;
+      // z-index: 1;
+      .language-selector {
+        display: inline-block;
+        background-color: $white;
+        // border: 1px solid rgba(138, 138, 135, 0.5);
+        li {
+          display: inline-block;
+          width: 100%;
+          width: 100%;
+          margin: 0;
+          padding: 10px;
+          font-size: 18px;
+          color: #8A8A87;
+          &:hover {
+            background-color: $orange;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Password Strenght Field */
+.strength-meter {
+  position: relative;
+  height: 3px;
+  background: $gray-ed;
+  margin: 5px auto 20px;
+  @include border-radius(3px);
+}
+
+.strength-meter:before,
+.strength-meter:after {
+  position: absolute;
+  z-index: 10;
+  display: block;
+  height: inherit;
+  width: 80px;
+  background: transparent;
+  border-color: $white;
+  border-style: solid;
+  border-width: 0 5px 0 5px;
+  content: '';
+}
+
+.strength-meter:before {
+    left: 70px;
+}
+
+.strength-meter:after {
+    right: 70px;
+}
+
+.strength-meter-fill {
+  position: absolute;
+  height: inherit;
+  width: 0;
+  background: transparent;
+  @include border-radius(inherit);
+  -webkit-transition: width 0.5s ease-in-out, background 0.25s;
+  -moz-transition: width 0.5s ease-in-out, background 0.25s;
+  -ms-transition: width 0.5s ease-in-out, background 0.25s;
+  transition: width 0.5s ease-in-out, background 0.25s;
+}
+
+.strength-meter-fill[data-strength='0'] {
+  background: darkred;
+  width: 20%;
+}
+
+.strength-meter-fill[data-strength='1'] {
+  background: orangered;
+  width: 40%;
+}
+
+.strength-meter-fill[data-strength='2'] {
+  background: orange;
+  width: 60%;
+}
+
+.strength-meter-fill[data-strength='3'] {
+  background: yellowgreen;
+  width: 80%;
+}
+
+.strength-meter-fill[data-strength='4'] {
+  background: green;
+  width: 100%;
+}
+
+.strength-meter-text {
+  display: inline-block;
+  width: 100%;
+  margin-top: 15px;
+  font-size: 13.5px;
+  text-align: center;
+}
+.strength-meter-text[data-strength='0'] {
+  color: darkred;
+}
+.strength-meter-text[data-strength='1'] {
+  color: orangered;
+}
+.strength-meter-text[data-strength='2'] {
+  color: orange;
+}
+.strength-meter-text[data-strength='3'] {
+  color: yellowgreen;
+}
+.strength-meter-text[data-strength='4'] {
+  color: green;
+}
+
+/* Group button design */
+.next-prev-grp-btn {
+  display: inline-block;
+  width: 100%;
+  .btn.blue-wallet-btn {
+    float: left;
+    width: 50%;
+    &::after {
+      margin-left: 16px;
+    }
+    &.back-btn {
+      background-color: $orange;
+      border-color: $orange;
+      &:hover {
+        background-color: $orange !important;
+        border-color: $orange !important;
+      }
+      &::after {
+        display: none;
+      }
+      &:before {
+        display: inline-block;
+        margin-top: -4px;
+        margin-right: 16px;
+        vertical-align: top;
+        @include transform(rotate(180deg));
+        content: url(../images/arrow.png);
+      }
+    }
+  }
+}

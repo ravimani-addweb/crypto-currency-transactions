@@ -1,0 +1,156 @@
+<div class="dimcoin-page">
+  <div class="container container-top">
+    <div class="wh-form-wrap">
+
+      <div class="container-585" ng-show="$ctrl.screenmain">
+        <h1 class="page-title">{{'MENU_DIMCOIN_EXCHANGE'|translate}}</h1>
+        <fieldset class="form-group">
+          <label>{{ 'EXCHANGE_LABEL_CURRENCY' | translate }} </label>
+          <div class="collapse-dropdown">
+            <label class="collapse-title" type="text" ng-click="$ctrl.currencyselect()" style="cursor:pointer;">{{$ctrl.currency}}</label>
+            <div ng-show="$ctrl.currencydata" class="collapse-content">
+              <ul>
+                <li style="cursor:pointer;"  class="checkbox-colored">
+                  <label>
+                    <div class="input-rc">
+                      <input type="radio" name="currency" ng-model="$ctrl.currency" class="form-checkbox" value="DIMCOIN">
+                      <span class="input-rc-span"></span>
+                    </div>DIMCOIN
+                  </label>
+                </li>
+                <li style="cursor:pointer;" class="checkbox-colored">
+                  <label>
+                    <div class="input-rc">
+                    <input type="radio" name="currency" ng-model="$ctrl.currency" class="form-checkbox" value="DIM TOKEN">
+                    <span class="input-rc-span"></span>
+                    </div>DIM TOKEN
+                  </label>
+                </li>
+                <li style="cursor:pointer;" class="checkbox-colored">
+                  <label>
+                    <div class="input-rc">
+                      <input type="radio" name="currency" ng-model="$ctrl.currency" class="form-checkbox" value="DIM USD">
+                      <span class="input-rc-span"></span>
+                    </div>DIM USD
+                  </label>
+                </li>
+                <li style="cursor:pointer;" class="checkbox-colored">
+                  <label>
+                    <div class="input-rc">
+                      <input type="radio" name="currency" ng-model="$ctrl.currency" class="form-checkbox" value="DIM EUR">
+                      <span class="input-rc-span"></span>
+                    </div>DIM EUR
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>{{ 'GENERAL_AMOUNT' | translate }} </label>
+          <input type="text" class="form-control pwd" name="" value="" >
+        </fieldset>
+        <fieldset class="form-group">
+          <label>200.0000000 ~~ 2,20{{$ctrl.getFiatCode()}}</label>
+          <div class="doller-icon">
+
+                <select class="down-arrow-select exchange" ng-options="option.name for option in $ctrl.availableDisplayCurrency track by option.id" ng-model="$ctrl.selectedDisplayCurrency"></select>
+              <!-- <select  class="down-arrow-select exchange">
+                <option value="">{{'US_DOLLAR' | translate }} $ </option>
+                <option value="">{{ 'IN_RUPEE' | translate }}</option>
+              </select> -->
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <button  type="button" class="blue-wallet-btn btn btn-success" ng-click="$ctrl.screen()">{{ 'BASIC_CONTINUES' | translate }}</button>
+        </fieldset>
+        <fieldset class="form-group dimcoin-step">
+          <span>Step 1 of 2</span>
+        </fieldset>
+      </div>
+
+      <div class="container-585" ng-show="!$ctrl.screenmain">
+        <h1 class="page-title">{{'MENU_DIMCOIN_EXCHANGE'|translate}}</h1>
+        <fieldset class="form-group">
+          <label>{{ 'EXCHANGE_LABEL_SELECT_PAYMENT' | translate }} </label>
+          <select  class="form-control down-arrow-select">
+            <option value="">XEM</option>
+            <option value="">CASH</option>
+          </select>
+        </fieldset>
+        <fieldset class="form-group">
+          <a class="blue-wallet-btn btn btn-success" href="#!/transfer-transactions/dim/dim|coin/{{$ctrl.selectId}}"> {{'DIMCOIN_BUY_LABEL'|translate}}</a>
+        </fieldset>
+        <fieldset class="form-group dimcoin-step">
+          <span>Step 2 of 2</span>
+        </fieldset>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<div class="dimcoin-page" ng-show="false">
+  <div class="container container-top">
+    <div class="wh-form-wrap">
+      <h1 class="page-title">{{'MENU_DIMCOIN'|translate}}</h1>
+      <div class="dimcoin-page-wrap">
+          <form>
+            <fieldset class="form-group">
+                <label>{{ 'FORM_SELECT_DIMCOIN' | translate }} </label>
+                <select class="form-control"
+                 style="text-overflow: ellipsis; overflow: hidden; text-transform: uppercase;"
+                 ng-model="$ctrl.selectId">
+                  <option value="1" ng-selected="$ctrl.selectId == 1">100 DIM</option>
+                  <option value="2" ng-selected="$ctrl.selectId == 2">200 DIM</option>
+                  <option value="3" ng-selected="$ctrl.selectId == 3">500 DIM</option>
+                  <option value="4" ng-selected="$ctrl.selectId == 4">1000 DIM</option>
+                  <option value="5" ng-selected="$ctrl.selectId == 5">2500 DIM</option>
+                  <option value="6" ng-selected="$ctrl.selectId == 6">5000 DIM</option>
+                  <option value="7" ng-selected="$ctrl.selectId == 7">10000 DIM</option>
+                  <option value="8" ng-selected="$ctrl.selectId == 8">25000 DIM</option>
+                  <option value="9" ng-selected="$ctrl.selectId == 9">50000 DIM</option>
+                  <option value="10" ng-selected="$ctrl.selectId == 10">100000 DIM</option>
+                  <option value="11" ng-selected="$ctrl.selectId == 11">250000 DIM</option>
+                </select>
+            </fieldset>
+            <fieldset class="form-group">
+                  <label>{{ 'FORM_OTHER_AMOUNT' | translate }} </label>
+                <input class="form-control"
+                  type="text"
+                   ng-disabled="true"
+                  placeholder="{{ 'GENERAL_PRICE' | translate }}"
+                  />
+            </fieldset>
+              <fieldset class="form-group">
+                <button class="blue-wallet-btn btn btn-success pull-xs-right">
+                  <a href="#!/transfer-transactions/dim/dim|coin/{{$ctrl.selectId}}"> {{'DIMCOIN_BUY_LABEL'|translate}}</a>
+                </button>
+              </fieldset>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>

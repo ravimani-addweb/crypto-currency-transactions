@@ -1,0 +1,39 @@
+/**
+ * @file
+ * SCSS file to generate CSS.
+ *
+ * Base css of site
+ */
+
+* {
+  line-height: normal;
+  vertical-align: top;
+}
+
+body {
+  /*font-family: $opensans-extrabold;*/
+  font-family: 'Maven Pro', sans-serif;
+  background-color: #F4F8FB;
+}
+
+h1 {
+  font-family: 'Maven Pro', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+video {
+  height: auto;
+  width: 100%;
+}

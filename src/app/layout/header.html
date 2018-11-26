@@ -1,0 +1,162 @@
+<div class="page-wrapper">
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner ">
+            <!-- BEGIN LOGO -->
+            <!-- END LOGO -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu top-left-menu pull-left">
+                <ul class="nav pull-left main-logo" style="outline:0;">
+                    <!-- BEGIN NOTIFICATION DROPDOWN <q></q> --> 
+                    <!-- DOC: Apply "dropdown-dark" class after "dropdown-extended" to change the dropdown styte -->
+                    <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
+                    <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
+                    <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                        <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button> -->
+                        <a class="navbar-brand" ui-sref="app.home" style="padding-top: 5px !important;"><img src="images/logo-clean.png" alt="Logo" style="height:32px;margin:4px 0;"></a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <!-- <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+            <span></span>
+            </a> -->
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="top-menu top-right-menu">
+
+                <ul class="nav navbar-nav pull-left" ng-show="$ctrl._DataBridge.accountData.meta && $ctrl._DataBridge.accountData.account">
+                    <li><a style="outline:0;" ui-sref-active="active" ui-sref="app.dashboard" show-authed="true">{{'MENU_DASHBOARD'|translate}}</a></li>
+                    <li class="hide"><a style="outline:0;" ui-sref-active="active" ui-sref="app.assetExplorer" show-authed="true">{{'MENU_ASSETS'|translate}}</a></li>
+                    <li class="hide"><a style="outline:0;" ui-sref-active="active" ui-sref="app.dimcoin" show-authed="true">{{'MENU_DIMCOIN'|translate}}</a></li>
+                    <li class="submenu-wallet">
+                      <a class="desktop-list" style="outline:0;" ui-sref-active="active" href="#!/transfer-transactions/std/all|all/0/transaction" show-authed="true">{{'MENU_TRANSFER'|translate}}</a>
+                      <span class="responsive-list" style="outline:0;" ui-sref-active="active" ng-click="$ctrl.showSubnavtransfer()" show-authed="true">{{'MENU_TRANSFER'|translate}}</span>
+                      <ul class="nav nav-tabs wallet-type dim-sub-navigation" ng-show="$ctrl.submenutransfer">
+                          <li class="dim-sub-navigation-item">
+                              <a href="#!/transfer-transactions/std/all|all/0/transaction">{{ 'TRANSFER_TRANSACTION_TITLE' | translate }}</a>
+                          </li>
+                          <li class="dim-sub-navigation-item">
+                              <a href="#!/transfer-transactions/std/all|all/0/information">{{ 'ACCOUNT_ACCOUNT_INFORMATION' | translate }}</a>
+                          </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+
+                    <li show-authed="false" class="submenu-wallet ">
+                        <a class="desktop-list" style="outline:0;" ui-sref-active="active" ui-sref="app.login" show-authed="false">{{ 'HEADER_LOGIN_BUTTON' | translate }}</a>
+                        <span class="responsive-list " style="outline:0;" ui-sref-active="active" ng-click="$ctrl.showSubnavlogin()" show-authed="false">{{ 'HEADER_LOGIN_BUTTON' | translate }}</span>
+                        <ul class="nav nav-tabs wallet-type dim-sub-navigation" ng-show="$ctrl.submenulogin">
+                            <li class="dim-sub-navigation-item">
+                                <a href="#!/login/0">{{ 'BASIC_WALLET' | translate }}</a>
+                            </li>
+                            <li class="dim-sub-navigation-item">
+                                <a href="#!/login/1">{{ 'PREMIUM_WALLET' | translate }}</a>
+                            </li>
+                            <li class="dim-sub-navigation-item">
+                                <a href="#!/login/2">{{'VIP_WALLET' | translate }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li show-authed="false" class="submenu-wallet">
+                        <a  class="desktop-list" style="outline:0;" ui-sref-active="active" ui-sref="app.signup" show-authed="false">{{ 'HEADER_SIGNUP_BUTTON' | translate }}</a>
+                        <span class="responsive-list" style="outline:0;" ui-sref-active="active" ng-click="$ctrl.showSubnavsignup()" show-authed="false">{{ 'HEADER_SIGNUP_BUTTON' | translate }}</span>
+                        <ul class="nav nav-tabs wallet-type dim-sub-navigation" ng-show="$ctrl.submenusignup">
+                          <li class="dim-sub-navigation-item">
+                            <a href="#!/signup/0">{{ 'BASIC_WALLET' | translate }}</a>
+                          </li>
+                          <li class="dim-sub-navigation-item">
+                            <a href="#!/signup/1">{{ 'PREMIUM_WALLET' | translate }}</a>
+                          </li>
+                          <li class="dim-sub-navigation-item">
+                            <a href="#!/signup/2">{{'VIP_WALLET' | translate }}</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li show-authed="false">
+                        <a style="outline:0;" ui-sref-active="active" ui-sref="app.faq">{{'HEADER_FAQ_BUTTON' | translate}}</a>
+                    </li>
+
+                    <li class="node" style="cursor:pointer;" show-authed="true">
+                        <a style="outline:0; height: 40px" ui-sref-active="active" ui-sref="app.node" show-authed="true">
+                            <i class="fa fa-circle " ng-class="{'text-success': $ctrl._DataBridge.nisHeight > 0, 'text-danger': !$ctrl._DataBridge.nisHeight || !$ctrl._DataBridge.networkTime}"
+                               style="padding-top: 4px; font-size: 15px;"></i>&nbsp;
+                            {{ 'HEADER_NODE' | translate }}
+                        </a>
+                    </li>
+                    <!-- <li ng-show="$ctrl._DataBridge.accountDatahelp.meta && $ctrl._DataBridge.accountData.account"> -->
+                    <li class="lang-dropdown">
+                        <a class="selct-value-lang" style="outline:0; text-transform:uppercase;" ng-click="$ctrl.langSelectBox()" ng-bind="$ctrl.selectOption.key"></a>
+                    </li>
+                    <li show-authed="true">
+                        <a style="outline:0;" ui-sref-active="active" ui-sref="app.faq">{{'HEADER_FAQ_BUTTON' | translate}}</a>
+                    </li>
+                    <li show-authed="true" class="submenu-wallet">
+                        <a  class="desktop-list" style="outline:0;" ui-sref-active="active" ui-sref="app.account" show-authed="true">{{ 'HEADER_ACCOUNT' | translate }}</a>
+                        <span  class="responsive-list" style="outline:0;" ui-sref-active="active" ng-click="$ctrl.showSubnavaccount()" show-authed="true">{{ 'HEADER_ACCOUNT' | translate }}</span>
+                        <ul class="nav nav-tabs wallet-type dim-sub-navigation" ng-show="$ctrl.submenuaccount">
+                          <li class="dim-sub-navigation-item"><a href="#!/account/0">{{ 'ACCOUNT_ACCOUNT_INFORMATION' | translate }}</a></li>
+                          <li class="dim-sub-navigation-item"><a href="#!/account/1">{{ 'ACCOUNT_EXPORT_MOBILE' | translate }}</a></li>
+                          <li class="dim-sub-navigation-item"><a href="#!/account/2">{{'GENERAL_PRIVATE_KEY' | translate }}</a></li>
+                          <li class="dim-sub-navigation-item"><a href="#!/account/3">{{'ACCOUNT_BACKUP_WALLET' | translate }}</a></li>
+                          <li class="dim-sub-navigation-item"><a href="#!/account/4">{{'SETTING' | translate }}</a></li>
+                        </ul>
+
+                    </li>
+                    <li show-authed="true">
+                      <a style="outline:0;border-left:medium none;" ng-if="!$ctrl.walletName" ui-sref="app.account">{{ $ctrl._Wallet.currentAccount.label }}</a>
+                        <a style="outline:0;border-left:medium none;" ng-if="$ctrl.walletName"  ui-sref="app.account">{{ $ctrl.walletName || ('HEADER_PRIMARY' | translate) }}</a>
+                    </li>
+                    <li class="dropdown-quick-sidebar-toggler" show-authed="true">
+                        <a class="dropdown-toggle" style="outline:0;cursor:pointer;border-right:none;" show-authed="true" ng-click="$ctrl.logout()">
+                            <!-- {{$ctrl.walletName}} -->
+                            {{ 'MENU_LOGOUT'| translate }}
+                        </a>
+                    </li>
+                    <!--
+                    <li ng-show="$ctrl._storage.wallets && $ctrl._storage.wallets.length" show-authed="false">
+                        <a style="outline:0;" ng-click="$ctrl.purge()">{{'HEADER_PURGE' | translate}}</a>
+                    </li>
+                    -->
+                </ul>
+                <!-- END QUICK SIDEBAR TOGGLER -->
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"></div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+</div>
+<div class="lang-selection" ng-show="$ctrl.langBox">
+    <div class="lang-wrap">
+        <p ng-click="$ctrl.langSelectBox()">{{ 'GENERAL_CLOSE' | translate}} <i class="fa fa-times" aria-hidden="true"></i></p>
+        <h1> {{'SELECT_YOUR_LANGUAGE' | translate }}</h1>
+        <span>{{ 'SELECT_LANGUAGE_INTRO' | translate }}</span>
+        <ul>
+            <li ng-class="{active: $ctrl.selectOption.key == lang.key}" ng-click="$ctrl.changeLanguage(lang); $ctrl.langSelectBox()" ng-repeat="lang in $ctrl.languages" style="outline:0; text-transform:uppercase;cursor:pointer;"> {{ lang.key }}</li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- <select  id="languageschange" style="outline:0; text-transform:uppercase;" class="form-control" ng-model="$ctrl.selectOption" ng-change="$ctrl.changeLanguage($ctrl.selectOption)" multiple>
+  <option  ng-selected="{{$ctrl.selectOption == lang.key}}" ng-repeat="lang in $ctrl.languages" value="{{lang.key}}">{{ lang.name }}</option>
+</select> -->

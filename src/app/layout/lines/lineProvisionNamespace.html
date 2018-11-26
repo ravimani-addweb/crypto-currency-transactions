@@ -1,0 +1,228 @@
+<table id="txTable" class="table table-bordered table-hover" title="{{ 'NAMESPACE_PROVISION_NAME' | translate }}" style="cursor:pointer;outline:0;margin-bottom:0;table-layout:fixed" ng-click="displayTransactionDetails(parent, tx, meta);">
+    <tbody style="outline:0;">
+        <tr data-toggle="collapse" data-target="#table{{number}}" class="collapsed collapse-icon" style="outline:0" aria-expanded="false">
+            <td class="timestampTx">{{tx.timeStamp | fmtNemDate}}</td>
+
+            <td class="sentTx" style="overflow:hidden;text-overflow: ellipsis;"
+                ng-show="!parent && tx.recipient !== mainAccount">
+                <img style="display: inline-block;" class="dim-icon-rounded" src="images/sent.png" />
+                <div style="padding-top: 8px;">{{ getContact(tx.recipient | fmtAddress) || (tx.recipient | fmtAddress) }}</div>
+            </td>
+
+            <td class="receivedTx" style="overflow:hidden;text-overflow: ellipsis;"
+                ng-show="!parent && tx.recipient === mainAccount">
+                <img style="display: inline-block;" class="dim-icon-rounded" src="images/received.png" />
+                <div style="padding-top: 8px;">{{ getContact(tx.signer | fmtPubToAddress:networkId | fmtAddress) || (tx.signer | fmtPubToAddress:networkId | fmtAddress) }}</div>
+            </td>
+
+            <td class="multisigTx" 
+                style="overflow:hidden;text-overflow: ellipsis; width: 50%;" 
+                ng-show="parent"
+                ng-class="{receivedTx: parent.otherTrans.recipient === mainAccount,
+                            sentTx: parent.otherTrans.recipient !== mainAccount}">
+                <img style="display: inline-block;" class="dim-icon-rounded" src="images/sent.png" ng-show="parent.otherTrans.recipient !== mainAccount" />
+                <img style="display: inline-block;" class="dim-icon-rounded" src="images/received.png" ng-show="parent.otherTrans.recipient === mainAccount" />
+                <div style="padding-top: 8px;">{{ getContact(parent.otherTrans.signer | fmtPubToAddress:networkId | fmtAddress) || (parent.otherTrans.signer | fmtPubToAddress:networkId | fmtAddress) }}</div>
+            </td>
+
+            <td class="amount-icon-wrap">
+                <div class="amt-icon"> <!-- always has XEM. -->
+                    <span><img class="dim-icon-rounded" ng-src="{{ getCurrency('nem:xem').icon }}"></span>
+                </div>
+                <div ng-if="tx.mosaics.length" ng-repeat="mos in tx.mosaics" class="amt-icon">
+                    <span ng-hide="mos.mosaicId.namespace == 'nem' && mos.mosaicId.name == 'xem'">
+                        <img class="dim-icon-rounded" ng-src="{{ getCurrency(mos).icon }}">
+                    </span>
+                </div>
+            </td>
+
+            <td class="txMessage" ng-show="!tx.message.type">
+                <div class="" title="No Message">
+            </td>
+            <td class="txMessage" style="" ng-show="tx.message.type">
+                <div class="tx-num" title="{{tx.message | fmtHexMessage}}">1</div>
+            </td>
+            <!-- <td><img src="images/plus.png"></td> -->
+        </tr>
+    </tbody>
+</table>
+
+<div id="table{{number}}" class="collapse" aria-expanded="false">
+    <div class="accordion-inner" style="word-break: break-all; padding-left: 8px;">
+        <table style="width: 100%;">
+            <thead style="background: transparent;">
+                <tr>
+                    <th style="padding-left: 15px;" colspan="2">
+                        <span ng-show="!parent"><b>{{ 'NAMESPACE_PROVISION_NAME' | translate }}</b></span>
+                        <span ng-show="parent"><b>{{ 'NAMESPACE_PROVISION_MULTISIG_NAME' | translate }}</b></span>
+                    </th>
+                    <!--<th></th>-->
+                    <th>
+                        <span><b>{{ 'VIEW_BLOCKCHAIN' | translate }}</b></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody style="background: transparent;">
+
+                <!-- GENERAL NEM TRANSACTION DATA -->
+
+                <tr>
+                    <td><b>{{ 'GENERAL_DATE' | translate }}<b></td>
+                    <td class="">{{tx.timeStamp | fmtNemDate}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b><span ng-if="!parent">{{ 'LINE_TX_DETAILS_FROM' | translate }}</span><span ng-if="parent">{{ 'LINE_TX_DETAILS_FROM_MULTISIG' | translate }}</span></b></td>
+                    <td>{{ getContact(tx.signer | fmtPubToAddress:networkId | fmtAddress) || (tx.signer | fmtPubToAddress:networkId | fmtAddress) }}</td>
+                    <td>
+                        <a href="{{blockchain}}{{ getContact(tx.signer | fmtPubToAddress:networkId | fmtAddress) || (tx.signer | fmtPubToAddress:networkId | fmtAddress) }}" target="_blank"><img src="../images/view.png" style="cursor:pointer"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>{{ 'GENERAL_TO' | translate }}</b></td>
+                    <td>{{ getContact(tx.recipient | fmtAddress) || (tx.recipient | fmtAddress) }}</td>
+                    <td>
+                        <a href="{{blockchain}}{{ getContact(tx.recipient | fmtAddress) || (tx.recipient | fmtAddress) }}" target="_blank"><img src="../images/view.png" style="cursor:pointer"></a>
+                    </td>
+                </tr>
+                <tr ng-show="parent">
+                    <td><b>{{ 'GENERAL_MULTISIG_ACCOUNT' | translate }}</b></td>
+                    <td>{{ getContact(tx.signer | fmtPubToAddress:networkId | fmtAddress) || (tx.signer | fmtPubToAddress:networkId | fmtAddress) }}</td>
+                    <td></td>
+                </tr>
+                <tr ng-show="parent">
+                    <td><b>{{ 'LINE_TX_DETAILS_ISSUER' | translate }}</b></td>
+                    <td>{{ getContact(parent.signer | fmtPubToAddress:networkId | fmtAddress) || (parent.signer | fmtPubToAddress:networkId | fmtAddress) }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>{{ 'GENERAL_AMOUNT' | translate }}</b></td>
+                    <td><span>{{(tx.amount | fmtNemValue)[0] || 0}}.{{(tx.amount | fmtNemValue)[1] || '000000'}}</span> XEM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>{{ 'GENERAL_FEE' | translate }}</b></td>
+                    <td><span>{{(tx.fee | fmtNemValue)[0]}}.{{(tx.fee | fmtNemValue)[1]}}</span> XEM</td>
+                    <td></td>
+                </tr>
+                <tr ng-show="parent">
+                    <td><b>{{ 'LINE_TX_DETAILS_MULTISIG_FEE' | translate }}</b></td>
+                    <td><span>{{(parent.fee | fmtNemValue)[0]}}.{{(parent.fee | fmtNemValue)[1]}}</span> XEM</td>
+                    <td></td>
+                </tr>
+
+                <!-- NAMESPACE PROVISION RELATED DATA -->
+
+                <tr ng-show="!tx.parent">
+                    <td><strong>{{ 'NAMESPACE_PROVISION_NEW_ROOT' | translate }}: </strong></td>
+                    <td>{{tx.newPart}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-show="tx.parent">
+                    <td><strong>{{ 'LINE_TX_DETAILS_NS_ROOT' | translate }}: </strong></td>
+                    <td>{{tx.parent}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-show="tx.parent">
+                    <td><strong>{{ 'LINE_TX_DETAILS_NS_NEW_SUB' | translate }}: </strong></td>
+                    <td>{{tx.newPart}}</td>
+                    <td></td>
+                </tr>
+
+                <!-- MESSAGE / ENCRYPTED MESSAGE RELATED DATA -->
+
+                <tr ng-show="tx.message.payload">
+                    <td class="message-text"><b>{{ 'GENERAL_MESSAGE' | translate }}</b></td>
+                    <td colspan="2">
+                        <span ng-show="tx.message.type === 1">{{tx.message | fmtHexMessage}}</span>
+                        <!-- for encrypted messages -->
+                        <div ng-show="tx.message.type === 2" id="details-{{tx.timeStamp}}">
+                            <div class="on-off-switch">
+                                <input id="box1" class="form-checkbox switched-item"
+                                type="checkbox"
+                                ng-click="showDecodeMessage = !showDecodeMessage; triggerMessageDecryption()" >
+                                <div class="on-off-wrap switched-off">
+                                    <span class="on-off-icon"></span>
+                                </div>
+                            </div>
+                            <div class="decode-message" id="decodeTxMessage-{{tx.timeStamp}}"
+                                ng-show="tx.message.type === 2 && showDecodeMessage && !disableDecryption">
+                                <div class="input-group">
+                                    <input type="password" class="form-control ng-valid ng-touched ng-dirty ng-valid-parse"
+                                            ng-model="walletScope.common.password"
+                                            id="passwordDecoding"
+                                            placeholder="{{'FORM_PASSWORD_FIELD_PLACEHOLDER' | translate }}"
+                                            aria-invalid="false">
+
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success blue-wallet-btn"
+                                                type="button"
+                                                ng-click="decode(tx)">{{ 'LINE_TX_DETAILS_DEC_MESS' | translate }}</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end encrypted messages -->
+                    </td>
+                </tr>
+
+                <!-- MULTISIGNATURE SIGNATURES RELATED DATA -->
+
+                <tr ng-show="parent.signatures.length">
+                    <td><b>{{ 'LINE_TX_DETAILS_SIGNATURES' | translate }}</b></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr ng-show="parent.signatures.length"
+                    ng-repeat="sig in parent.signatures">
+                    <td><b>{{ 'LINE_TX_DETAILS_COSIGNATORY' | translate }}</b></td>
+                    <td>
+                        <span>{{ getContact(sig.signer | fmtPubToAddress:networkId | fmtAddress) || (sig.signer | fmtPubToAddress:networkId | fmtAddress) }}</span>
+                        <span><br />{{sig.timeStamp | fmtNemDate}}</span>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <!-- CHAIN RELATED DATA -->
+
+                <tr>
+                    <td><b>{{ 'GENERAL_BLOCK' | translate }}</b></td>
+                    <td>
+                        <span ng-show="meta.height !== 9007199254740991">{{meta.height}}</span>
+                        <span ng-show="meta.height === 9007199254740991 || !meta.height">{{ 'LINE_TX_DETAILS_WAITING' | translate }}
+                    <span ng-if="parent">- {{ 'LINE_TX_DETAILS_NEED_SIG' | translate }}</span></span>
+                    </td>
+                    <td>
+                        <a href="{{blockchain_block}}{{meta.height}}" target="_blank"><img src="../images/view.png" style="cursor:pointer"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>{{ 'LINE_TX_DETAILS_HASH' | translate }}</b></td>
+                    <td>
+                        <span ng-show="parent"> {{meta.innerHash.data}} </span>
+                        <span ng-show="!parent"> {{meta.hash.data}} </span>
+                    </td>
+                    <td>
+                        <a href="{{blockchain_hash}}{{meta.hash.data}}" target="_blank"><img src="../images/view.png" style="cursor:pointer"></a>
+                    </td>
+                </tr>
+                <tr ng-show="parent">
+                    <td><b>{{ 'LINE_TX_DETAILS_MULTISIG_HASH' | translate }}</b></td>
+                    <td><span>{{meta.hash.data}}</span></td>
+                    <td>
+                        <a href="{{blockchain_hash}}{{meta.hash.data}}" target="_blank"><img src="../images/view.png" style="cursor:pointer"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="needsSignature2-{{tx.timeStamp}}" style="padding: 5px 30px;background-color: rgb(65, 191, 118);" ng-show="needsSignature">
+        <div class="input-group">
+            <input type="password" class="form-control ng-valid ng-touched ng-dirty ng-valid-parse" ng-model="walletScope.common.password" id="passwordDecoding" placeholder="{{'FORM_PASSWORD_FIELD_PLACEHOLDER' | translate }}" aria-invalid="false">
+            <span class="input-group-btn">
+                <button class="btn btn-default" style="color: white; border-radius: 0px; border-color:#444;" type="button" ng-click="walletScope.cosign(parent, tx, meta)">{{ 'LINE_TX_DETAILS_COSIGN' | translate }}</button>
+            </span>
+        </div>
+    </div>
+</div>

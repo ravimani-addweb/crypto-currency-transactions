@@ -1,0 +1,68 @@
+{
+    "name": "DepotWallet",
+    "version": "1.3.63",
+    "description": "Cross-platform extended wallet for DIMCOIN",
+    "author": "https://github.com/abvisco/abv-nanowallet#heroku-light",
+    "license": "MIT",
+    "dependencies": {
+        "angular": "^1.6.2",
+        "angular-animate": "1.6.2",
+        "angular-chart.js": "1.0.0",
+        "angular-clipboard": "^1.6.1",
+        "angular-mocks": "1.6.2",
+        "angular-sanitize": "^1.6.2",
+        "angular-translate": "2.11.0",
+        "angular-ui-router": "^0.3.1",
+        "angular-ui-sortable": "^0.17.2",
+        "babel-preset-es2015": "^6.3.13",
+        "babelify": "^7.2.0",
+        "body-parser": "~1.17.1",
+        "bootstrap": "3.3.6",
+        "browser-sync": "^2.11.1",
+        "browserify": "^13.0.0",
+        "browserify-ngannotate": "^2.0.0",
+        "chart.js": "2.1.6",
+        "express": "4.14.0",
+        "glob": "7.0.5",
+        "gulp": "^3.9.1",
+        "gulp-angular-templatecache": "^1.8.0",
+        "gulp-autoprefixer": "^3.1.1",
+        "gulp-notify": "^2.2.0",
+        "gulp-rename": "^1.2.2",
+        "gulp-sass": "^3.0.0",
+        "gulp-uglify": "^1.5.3",
+        "gulp-util": "^3.0.8",
+        "jquery": "3.0.0",
+        "marked": "^0.3.5",
+        "merge-stream": "^1.0.0",
+        "morgan": "1.7.0",
+        "ng-toast": "2.0.0",
+        "ngclipboard": "^1.1.1",
+        "ngstorage": "0.3.10",
+        "nodemailer": "4.3.1",
+        "nw": "^0.20.1",
+        "nw-builder": "^3.1.3",
+        "validator": "9.0.0",
+        "vinyl-source-stream": "^1.1.0"
+    },
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "build": "node node_modules/gulp/bin/gulp build",
+        "test": "gulp tests browserifyTests",
+        "postinstall": "node node_modules/gulp/bin/gulp build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/abvisco/abv-nanowallet#heroku-light"
+    },
+    "keywords": [
+        "nem"
+    ],
+    "bugs": {
+        "url": "https://github.com/abvisco/abv-nanowallet#heroku-light/issues"
+    },
+    "homepage": "https://github.com/abvisco/abv-nanowallet#heroku-light#readme"
+}

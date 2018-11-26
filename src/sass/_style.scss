@@ -1,0 +1,24 @@
+/**
+ * @file
+ * SCSS file to generate CSS.
+ *
+ * Layout SCSS.
+ */
+
+
+/* Import of variables created for site */
+@import 'abstractions/variable';
+@import 'abstractions/mixins';
+@import 'abstractions/fonts';
+@import 'abstractions/base';
+@import 'abstractions/typography';
+
+@import 'globals/forms';
+@import 'components/components';
+
+@import 'globals/header';
+@import 'globals/footer';
+@import 'globals/sidebar';
+
+@import 'layout/home';
+@import 'layout/basic-page';

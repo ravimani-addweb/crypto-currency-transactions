@@ -1,0 +1,426 @@
+<div class="account-page">
+
+  <div class="container container-top" ng-show="$ctrl.mainModel">
+    <div class="wh-form-wrap">
+      <div class="wh-tab">
+          <!-- <select  class="form-control" ng-model="$ctrl.walletkey" ng-change="$ctrl.changeWalletType($ctrl.walletkey)">
+            <option ng-repeat="wallettypes in $ctrl.walletTypes" ng-selected="$ctrl.walletkey == wallettypes.type" ng-value="wallettypes.type" >{{wallettypes.key| translate}}</option>
+          </select> -->
+
+          <ul class="nav nav-tabs nav-tabs-20">
+            <li ng-class="{active: $ctrl._selectedType.type == 1}">
+                  <a ng-click="$ctrl.changeWalletType('1')">
+                    {{ 'ACCOUNT_ACCOUNT_INFORMATION' | translate }}
+                  </a>
+              </li>
+            <li ng-class="{active: $ctrl._selectedType.type == 5}">
+              <a ng-click="$ctrl.changeWalletType('5')">
+                {{'SETTING' | translate }}
+              </a>
+            </li>
+            <li ng-class="{active: $ctrl._selectedType.type == 3}">
+                <a ng-click="$ctrl.changeWalletType('3')">
+                  {{ 'GENERAL_PRIVATE_KEY' | translate }}
+                </a>
+            </li>
+            <li ng-class="{active: $ctrl._selectedType.type == 2}">
+              <a ng-click="$ctrl.changeWalletType('2')">
+                {{'ACCOUNT_EXPORT_MOBILE' | translate }}
+              </a>
+            </li>
+            <li ng-class="{active: $ctrl._selectedType.type == 4}">
+                <a ng-click="$ctrl.changeWalletType('4')">
+                  {{ 'ACCOUNT_BACKUP_WALLET' | translate }}
+                </a>
+            </li>
+          </ul>
+      </div>
+      <div class="wh-tab-content">
+        <div class="row">
+          <div class="col-sm-12">
+                <!--Address -->
+              <div class="container-494">
+                <div ng-show="$ctrl._selectedType.type == 1">
+                  <div class="panel-body account-info-wrap">
+
+                    <fieldset class="form-group" ng-show="$ctrl.moreThanOneAccount">
+                      <!-- <div class="input-group"> -->
+                        <!-- <span class="input-group-btn"> -->
+                          <label>{{ 'ACCOUNT_ACCOUNT_SELECT_LABEL' | translate }} </label>
+                        <!-- </span> -->
+                        <select class="form-control down-arrow-select "
+                                ng-model="$ctrl.selectedAccount"
+                                ng-options="address as (account.label || account.address) for (address, account) in $ctrl._Wallet.current.accounts"
+                                ng-change="$ctrl.changeCurrentAccount($ctrl.selectedAccount)">
+                          <option value="" disabled selected>{{ 'ACCOUNT_ACCOUNT_SELECT' | translate }}</option>
+                        </select>
+                      <!-- </div> -->
+                    </fieldset>
+                    <!-- ACCOUNT ADDRESS -->
+                    <fieldset class="form-group info-add">
+                      <!-- <div class="input-group"> -->
+                        <!-- <span class="input-group-btn"> -->
+                        <!-- data-toggle="tooltip" title="{{ 'LOGIN_IMPORT_BUTTON' | translate }}" -->
+                          <label >{{ 'GENERAL_ADDRESS' | translate }} </label>
+                        <!-- </span> -->
+                        <span type="text" class="form-control read-only-text pink-bg" show-account-data="address" show-text-area="true" readOnly
+                              style="height: 90px;"></span>
+                      <!-- </div> -->
+                    </fieldset>
+                    <!-- ACCOUNT PUBLIC KEY -->
+                    <fieldset class="form-group hide">
+                      <!-- <div class="input-group"> -->
+                        <!-- <span class="input-group-btn"> -->
+                        <div class="label-info">
+                          <label>{{ 'GENERAL_PUBLIC_KEY' | translate }}</label>
+                          <span ng-click="$ctrl.ModalOpen('infopopup',6)"><img src="images/info-o.png"></span>
+                        </div>
+                        <!-- </span> -->
+                        <span class="block">
+                          <span type="text" class="form-control read-only-text pink-bg" show-account-data="publicKey" readOnly
+                                style="font-size: 13px;"></span>
+                        </span>
+                      <!-- </div> -->
+                    </fieldset>
+
+                    <fieldset class="form-group hide">
+                      <!-- <div class="input-group"> -->
+                        <div class="label-info">
+                          <label>{{ 'ACCOUNT_IMPORTANCE_SCORE' | translate }} </label>
+                          <!-- <span ng-click="$ctrl.ModalOpen('infopopup',7)"><img src="images/info-o.png"></span> -->
+                        </div>
+                        <span class="form-control read-only-text pink-bg" show-account-data="importance" readOnly></span>
+                      <!-- </div> -->
+                    </fieldset>
+
+                    <fieldset class="form-group hide">
+                      <!-- <div class="input-group"> -->
+                        <div class="label-info">
+                          <label>{{ 'ACCOUNT_VESTED_BALANCE' | translate }} </label>
+                          <!-- <span ng-click="$ctrl.ModalOpen('infopopup',8)"><img src="images/info-o.png"></span> -->
+                        </div>
+                        <span class="form-control read-only-text pink-bg" show-account-data="vestedBalance" readOnly></span>
+                      <!-- </div> -->
+                    </fieldset>
+                    <fieldset class="form-group hide">
+                      <button type="button" class="blue-wallet-btn btn btn-success"  ng-click="$ctrl.ModalOpen('addAccountModal',4)" >
+                        {{ 'ACCOUNT_ADD_NEW_ACCOUNT_BTN' | translate }}
+                      </button>
+                      <!-- <button type="button" class="btn btn-default">Add an existing account into wallet</button>-->
+                    </fieldset>
+                  </div>
+                </div>
+                <div ng-show="$ctrl._selectedType.type == 5">
+
+                  <fieldset class="form-group">
+                    <label>{{ 'SELECT_LANGUAGE' | translate }}</label>
+                    <div class="collapse-dropdown language-dropdown">
+                      <label class="collapse-title" type="text" style="cursor:pointer;" ng-bind="$ctrl.selectOption.name" ng-click="$ctrl.isLanguageSelector()"></label>
+                      <div class="collapse-content" ng-show="$ctrl.isLanguageSelectorDisplayed">
+                        <ul class ="language-selector">
+                          <li style="cursor:pointer;" ng-repeat="lang in $ctrl.languages" ng-click="$ctrl.changeLanguage(lang); $ctrl.isLanguageSelector()"> {{ lang.name }}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="form-group">
+                    <label>{{ 'CHANGE_BACK_COLOR' | translate }}</label>
+                    <div class="collapse-dropdown ">
+                      <label class="collapse-title" type="text" style="cursor:pointer;" ng-click="$ctrl.isColorSelector()">{{ $ctrl.selectedColor.key | translate}}</label>
+                      <div class="collapse-content" ng-show="$ctrl.isColorSelectorDisplayed">
+                        <ul class ="color-selector">
+                          <li style="cursor:pointer;" class="{{color.type}}" ng-repeat="color in $ctrl.themeColor" ng-click="$ctrl.changeColor(color)">
+                            {{ color.key | translate }}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+                <div ng-show="$ctrl._selectedType.type == 2">
+                  <div class="panel-body account-export-wrap">
+                      <div class="row">
+                        <fieldset class="reg-why-basic-wallet">
+                          <h2 class="page-blue-title">{{'ACCOUNT_INFO_TITLE' |  translate }}</h2>
+                        </fieldset>
+                        <!-- <div class="col-sm-12"> -->
+                          <!-- <button type="button" class="blue-wallet-btn btn btn-block"  ></button> -->
+                          <div class="export-grid" style="cursor:pointer;" ng-click="$ctrl.ModalOpen('daccountInfoModal',1)">
+                            <img src="images/qr-code-o-big.png">
+                            <div class="title">{{'ACCOUNT_INFO_QR_BTN' | translate }}</div>
+                          </div>
+                        <!-- </div> -->
+                        <!-- <div class="col-sm-12"> -->
+                          <!-- <button type="button" class="blue-wallet-btn btn btn-block" >{{'ACCOUNT_WALLET_QR_BTN' | translate }}</button> -->
+                          <div class="export-grid" style="cursor:pointer;" ng-click="$ctrl.ModalOpen('walletModal',2)">
+                            <img src="images/qr-code-o-big.png">
+                            <div class="title">{{'ACCOUNT_WALLET_QR_BTN' | translate }}</div>
+                          </div>
+                        <!-- </div> -->
+                        <!-- <div class="col-sm-12"> -->
+                          <!-- <button type="button" class="blue-wallet-btn btn btn-block"  ng-click="$ctrl.ModalOpen('walletModalMobileApps',3)">{{'ACCOUNT_WALLET_QR_BTN_2' | translate }}</button> -->
+                          <div class="export-grid" style="cursor:pointer;" ng-click="$ctrl.ModalOpen('walletModalMobileApps',3)">
+                            <img src="images/qr-code-o-big.png">
+                            <div class="title" ng-bind-html="'ACCOUNT_WALLET_QR_BTN_2' | translate"></div>
+                          </div>
+                        <!-- </div> -->
+                      </div>
+                  </div>
+                </div>
+                <div ng-show="$ctrl._selectedType.type == 3">
+                  <div class="panel-body account-private-key-wrap">
+                    <div class="form-group">
+                      <div class="orange-container padding-20">
+                        <span ng-bind-html="'ACCOUNT_PRIVATE_KEY_NOTE' | translate"></span>
+                      </div>
+                      <!-- <div class="input-group"> -->
+                        <!-- <span class="input-group-btn short"> -->
+                        <div class="label-info">
+                          <div ng-show="!$ctrl.showPrivateKeyField">
+                            <label >{{ 'FORM_PASSWORD' | translate }}</label>
+                            <span ng-click="$ctrl.ModalOpen('infopopup',5)"><img src="images/info-o.png"></span>
+                          </div>
+                          <div ng-show="$ctrl.showPrivateKeyField">
+                            <label>{{ 'GENERAL_PRIVATE_KEY' | translate }}</label>
+                          </div>
+
+                        </div>
+                      <!-- </span> -->
+                      <input class="form-control pwd" type="password" ng-model="$ctrl.common.password" placeholder="{{'FORM_PASSWORD_FIELD_PLACEHOLDER' | translate }}" ng-show="!$ctrl.showPrivateKeyField"/>
+                      <div class="read-only-text pink-bg"
+                            ng-show="$ctrl.showPrivateKeyField"
+                            ng-bind="$ctrl.common.privateKey"
+                            style="word-break: break-all; height: 100%;"></div>
+                        <span class="input-group-btn showHide">
+                          <div ng-show="$ctrl.showPrivateKeyField">
+                              <button class="blue-wallet-btn btn btn-success" type="button"
+                                      ng-click="$ctrl.clearSensitiveData()"
+                                      title="{{ 'GENERAL_CLEAR_ALL' | translate }}">
+                                  {{ 'ACCOUNT_HIDE_PRIVATE_KEY' | translate }}
+                                   <!-- <i class="fa {{$ctrl.arrowclass}}"></i> -->
+                              </button>
+                          </div>
+                          <div ng-show="!$ctrl.showPrivateKeyField">
+                            <button class="blue-wallet-btn btn btn-success" type="button"
+                                    ng-click="$ctrl.showPrivateKey()"
+                                    title="{{ 'ACCOUNT_PRIVATE_KEY_SHOW' | translate }}">
+                              {{ 'LOGIN_LOGIN_BUTTON' | translate }}
+
+                              <!-- <i class="fa {{$ctrl.arrowclass}}"></i> -->
+                            </button>
+                          </div>
+                        </span>
+                      <!-- </div> -->
+                      <div class="process-bar-wrap"><div class="process-bar green"></div></div>
+                    </div>
+                  </div>
+                </div>
+                <div ng-show="$ctrl._selectedType.type == 4">
+                    <div class="panel-body account-backup-wrap">
+                      <div class="orange-container padding-20">
+                        <span ng-bind-html="'ACCOUNT_BACKUP_WALLET_NOTE' | translate"></span>
+                      </div>
+                      <fieldset class="form-group">
+                        <!-- <div class="input-group" > -->
+                          <!-- <span class="input-group-btn"> -->
+                        <label>{{ 'ACCOUNT_BACKUP_WALLET_SELECT' | translate }} </label>
+                        <!-- </span> -->
+                        <div class="collapse-dropdown">
+                            <label class="collapse-title" type="text"
+                                style="cursor:pointer;"
+                                ng-click="$ctrl.triggerWalletSelector()">
+                                <span ng-if="$ctrl.selectedWalletLabel.length > 0">{{$ctrl.selectedWalletLabel}}</span>
+                                <span ng-if="!$ctrl.selectedWalletLabel.length"
+                                    class="text-muted">{{'LOGIN_SELECT_WALLET' | translate}}</span>
+                            </label>
+                            <div ng-show="$ctrl.isWalletSelectorDisplayed" class="collapse-content">
+                                <ul>
+                                    <li class="selection-option">{{'LOGIN_SELECT_WALLET' | translate}}</li>
+                                    <li style="cursor:pointer;" class="checkbox-colored"
+                                        ng-repeat="wallet in $ctrl._storage.wallets"
+                                        ng-click="$ctrl.triggerWalletSelected(wallet)">
+                                        <div class="input-rc">
+                                            <input type="checkbox" name="wallet"
+                                                    class="form-checkbox"
+                                                    ng-checked="$ctrl.isWalletSelected(wallet)"
+                                                    value="{{wallet.name}}">
+                                            <span class="input-rc-span"></span>
+                                        </div>{{wallet.name}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                          <span class="input-group-btn dLoad">
+                            <button class="blue-wallet-btn btn btn-success" type="button" ng-show="$ctrl.selectedWallet" ng-click="$ctrl.download($ctrl.selectedWallet)" title="{{'ACCOUNT_BACKUP_WALLET_DOWNLOAD' | translate}}">{{'ACCOUNT_BACKUP_WALLET_DOWNLOAD' | translate}}</button>
+                          </span>
+                        <a id="downloadWallet" target="_blank"></a>
+                      <!-- </div> -->
+                    </fieldset>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Account info qr Modal -->
+  <div class="container container-top" ng-show="$ctrl.daccountInfoModal">
+    <div class="wh-form-wrap padding-20">
+    <!-- Modal content-->
+
+        <div class="icon text-right" ng-click="$ctrl.ModalOpen('daccountInfoModal',1)">
+          <img src="images/close-o.png" class="icon-close"/>
+        </div>
+        <div class="container-585">
+        <h4 class="page-blue-title modal-title">{{ 'ACCOUNT_INFO_QR_TITLE' | translate }}</h4>
+        <center><div id="accountInfoQR"></div></center>
+      </div>
+    </div>
+  </div>
+      <!-- Wallet qr Modal -->
+  <div class="container container-top" ng-show="$ctrl.walletModal">
+    <div class="wh-form-wrap padding-20">
+    <!-- Modal content-->
+      <div class="icon text-right" ng-click="$ctrl.ModalOpen('walletModal',2)">
+        <img src="images/close-o.png" class="icon-close"/>
+      </div>
+        <div class="container-585">
+        <h4 class="page-blue-title modal-title">{{ 'ACCOUNT_WALLET_QR_BTN' | translate }}</h4>
+       <center><div id="exportWalletQR"></div></center>
+       <p class="text-center">{{ 'ACCOUNT_WALLET_QR_NOTE' | translate }}</p>
+      </div>
+    </div>
+  </div>
+      <!-- Wallet qr Modal for ios and android -->
+  <div class="container container-top" ng-show="$ctrl.walletModalMobileApps">
+    <div class="wh-form-wrap padding-20">
+    <!-- Modal content-->
+        <div class="icon text-right" ng-click="$ctrl.ModalOpen('walletModalMobileApps',3)">
+          <img src="images/close-o.png" class="icon-close"/>
+        </div>
+      <div class="container-585">
+        <h4 class="page-blue-title modal-title">{{ 'ACCOUNT_WALLET_QR_ANDROID_IOS_TITLE' | translate }}</h4>
+        <div class="text-center" id="mobileWalletQR"></div>
+        <div id="mobileWalletForm">
+          <!-- Password Field -->
+          <fieldset class="form-group">
+              <div class="label-info">
+                <label>{{ 'FORM_PASSWORD' | translate }} </label>
+              </div>
+              <input class="form-control" type="password" placeholder="{{ 'FORM_PASSWORD_FIELD_PLACEHOLDER' | translate }}" ng-model="$ctrl.common.password" />
+          </fieldset>
+          <button class="blue-wallet-btn btn "
+            type="submit" ng-disabled="$ctrl.okPressed || !$ctrl.common.password.length" ng-click="$ctrl.generateWalletQR()">
+            {{'GENERAL_REVEAL' | translate }}
+              <!-- <i class="fa {{$ctrl.arrowclass}}"></i> -->
+          </button>
+          <div class="process-bar-wrap" ><div class="process-bar green"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <!-- Add new account modal -->
+  <div class="container container-top" ng-show="$ctrl.addAccountModal">
+    <div class="wh-form-wrap">
+      <!-- Modal content-->
+        <div class="icon text-right" ng-click="$ctrl.ModalOpen('addAccountModal',4)">
+          <img src="images/close-o.png" class="icon-close"/>
+        </div>
+        <div class="container-585">
+          <h4 class="page-blue-title modal-title">{{ 'ACCOUNT_ADD_NEW_ACCOUNT_BTN' | translate }}</h4>
+          <p class="orange-container padding-20"><span ng-bind-html="'ACCOUNT_ADD_NEW_ACCOUNT_WARNING' | translate"></span></p>
+          <div class="">
+            <fieldset class="form-group">
+              <input class="form-control form-control-lg"
+                type="password"
+                placeholder="{{ 'FORM_PASSWORD_FIELD_PLACEHOLDER' | translate }}"
+                ng-model="$ctrl.common.password"/>
+            </fieldset>
+            <fieldset class="form-group">
+              <input class="form-control form-control-lg"
+                type="text"
+                placeholder="{{ 'GENERAL_ACCOUNT_LABEL' | translate }} {{ 'GENERAL_OPTIONAL' | translate }}"
+                ng-model="$ctrl.newAccountLabel"/>
+            </fieldset>
+            <button class="btn blue-wallet-btn"
+              type="submit" ng-disabled="$ctrl.okPressed || !$ctrl.common.password.length" ng-click="$ctrl.addNewAccount()">
+              {{ 'ACCOUNT_ADD_NEW_ACCOUNT' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="container container-top" ng-show="$ctrl.infopopup && $ctrl.keytype == 5">
+    <div  class="wh-form-wrap padding-20">
+      <div class="icon text-right"  ng-click="$ctrl.ModalOpen('infopopup',5)">
+        <img src="images/close-o.png" class="icon-close"/>
+      </div>
+      <div class="container-585">
+        <fieldset class="reg-why-basic-wallet">
+          <h2 class="page-blue-title">{{'  BASIC_PASSWORD_REQ' |  translate }}</h2>
+          <label><strong>{{ 'BASIC_PASSWORD_QUESTION_1' | translate}}</strong></label>
+            <label class="text-color-gray" ng-bind-html="'BASIC_PASSWORD_ANSWER_1' | translate"></label>
+        </fieldset>
+        <fieldset class="reg-why-basic-wallet">
+          <div class="orange-container padding-20">
+            <label><strong>{{ 'BASIC_PASSWORD_QUESTION_2' | translate}}</strong></label>
+            <label ng-bind-html="'BASIC_PASSWORD_ANSWER_2' | translate"></label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="container container-top" ng-show="$ctrl.infopopup && $ctrl.keytype == 6">
+    <div  class="wh-form-wrap">
+      <div class="icon text-right"  ng-click="$ctrl.ModalOpen('infopopup',6)">
+        <img src="images/close-o.png" class="icon-close"/>
+      </div>
+      <div class="container-585">
+        <fieldset class="reg-why-basic-wallet">
+          <h2 class="page-blue-title">{{'PASSWORD_PUBLIC_QUESTION_1' |  translate }}</h2>
+        </fieldset>
+        <fieldset class="reg-why-basic-wallet">
+          <!-- <h2 class="page-blue-title">{{'PASSWORD_PUBLIC_REQ' |  translate }}</h2> -->
+            <label class="text-color-gray" ng-bind-html="'PASSWORD_PUBLIC_ANSWER_1' | translate"></label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="container container-top" ng-show="$ctrl.infopopup && $ctrl.keytype == 7">
+    <div  class="wh-form-wrap">
+      <div class="icon text-right"  ng-click="$ctrl.ModalOpen('infopopup',7)">
+        <img src="images/close-o.png" class="icon-close"/>
+      </div>
+      <div class="container-585">
+        <fieldset class="reg-why-basic-wallet">
+          <h2 class="page-blue-title">{{'ACCOUNT_INFO_SCORE_TITLE' |  translate }}</h2>
+        </fieldset>
+        <fieldset class="reg-why-basic-wallet">
+          <h2 class="page-blue-title">{{'PASSWORD_SCORE_REQ' |  translate }}</h2>
+          <label><strong>{{ 'PASSWORD_SCORE_QUESTION_1' | translate}}</strong></label>
+            <label class="text-color-gray" ng-bind-html="'PASSWORD_SCORE_ANSWER_1' | translate"></label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="container container-top" ng-show="$ctrl.infopopup && $ctrl.keytype == 8">
+    <div  class="wh-form-wrap">
+      <div class="icon text-right"  ng-click="$ctrl.ModalOpen('infopopup',8)">
+        <img src="images/close-o.png" class="icon-close"/>
+      </div>
+      <div class="container-585">
+        <fieldset class="reg-why-basic-wallet">
+          <h2 class="page-blue-title">{{'ACCOUNT_INFO_BALANCE_TITLE' |  translate }}</h2>
+        </fieldset>
+        <fieldset class="reg-why-basic-wallet">
+          <h2 class="page-blue-title">{{'PASSWORD_BALANCE_REQ' |  translate }}</h2>
+          <label><strong>{{ 'PASSWORD_BALANCE_QUESTION_1' | translate}}</strong></label>
+            <label class="text-color-gray" ng-bind-html="'PASSWORD_BALANCE_ANSWER_1' | translate"></label>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

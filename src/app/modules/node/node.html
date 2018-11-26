@@ -1,0 +1,85 @@
+  <div class="node-page">
+    <div class="container container-top">
+      <div class="wh-form-wrap">
+        <div class="container-420">
+          <h1 class="page-blue-title">
+           <!-- <i class="fa fa-world"></i>  -->
+           {{ 'HEADER_NODE' | translate }} </h1>
+           <fieldset class="reg-why-basic-wallet">
+             <label class="text-color-gray" ng-bind-html="'NODE_ANSWER' | translate"></label>
+           </fieldset>
+        <div class="node-page-wrap">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                              <!-- help -->
+                                <!-- NODES BLOCK HEIGHT -->
+                                    <fieldset class="form-group">
+                                        <!-- <div class="input-group"> -->
+                                        <!-- <span class="input-group-btn"> -->
+                                          <label>{{ 'HEADER_NODE_BLOCK_HEIGHT' | translate }} </label>
+                                        <!-- </span> -->
+                                          <span type="text" class="form-control read-only-text pink-bg" readOnly show-block-height></span>
+                                        <!-- </div> -->
+                                    </fieldset>
+                                    <!-- CURRENT NODE -->
+                                    <fieldset class="form-group">
+                                        <!-- <div class="input-group"> -->
+                                        <!-- <span class="input-group-btn"> -->
+                                          <label>{{ 'HEADER_NODE_CURRENT_NODE' | translate }} </label>
+                                        <!-- </span> -->
+                                          <span type="text" class="form-control read-only-text pink-bg" readOnly>{{ $ctrl.currentNode | toHostname }}</span>
+                                        <!-- </div> -->
+                                    </fieldset>
+                                    <!-- NODE LIST -->
+                                    <fieldset class="form-group doller-icon">
+                                        <!-- <div class="input-group"> -->
+                                        <!-- <span class="input-group-btn"> -->
+                                          <label>{{ 'HEARDER_NODE_LIST' | translate }} </label>
+                                        <!-- </span> -->
+                                            <!-- <select class="form-control down-arrow-select" ng-model="$ctrl.currentNode" ng-change="$ctrl.changeNode($ctrl.currentNode)" ng-options="node.uri as (node.uri | toHostname) for node in $ctrl.nodes">
+                                              <option value="" disabled selected>{{ 'HEADER_NODE_SELECT' | translate }}</option>
+                                            </select> -->
+
+                                            <div class="collapse-dropdown ">
+                                              <span class="collapse-title" type="text" style="cursor:pointer;" ng-click="$ctrl.isSelectNode()">{{ $ctrl.currentNode | toHostname }}</span>
+                                              <ul class="collapse-content" ng-show = "$ctrl.isnodeselect" >
+                                                <li class="selection-option"> {{ 'HEADER_NODE_SELECT' | translate }} </li>
+                                                <li  style="cursor:pointer;" ng-repeat="node in $ctrl.nodes" ng-click="$ctrl.changeNode(node.uri); $ctrl.isSelectNode()">{{(node.uri | toHostname)}}</li>
+                                              </ul>
+                                            </div>
+
+
+                                        <!-- </div> -->
+                                    </fieldset>
+                                    <!-- CUSTOM NODE -->
+                                    <fieldset class="form-group" autocomplete="off">
+                                        <!-- <div class="input-group"> -->
+                                        <!-- <span class="input-group-btn"> -->
+<!-- data-toggle="tooltip" data-placement="bottom" title="{{ 'HEADER_NODE_CUSTOM_TOOLTIP' | translate }}" -->
+                                          <label>{{ 'HEADER_NODE_CUSTOM' | translate }}
+                                             <!-- <i class="fa fa-question-circle-o"></i>  -->
+                                           </label>
+                                        <!-- </span> -->
+                                            <input class="form-control"
+                                                   type="text" autocomplete="off"
+                                                   placeholder="{{ 'HEADER_NODE_CUSTOM_INFO' | translate }}"
+                                                help   ng-model="$ctrl.customNode" ng-model-options="{debounce:500}"/>
+                                            <span class="input-group-btn adding">
+                                              <!-- <button type="button" class="btn btn-warning" ng-click="$ctrl.changeNode($ctrl.customNode)">
+                                                  <i class="fa fa-plus"></i>
+                                              </button> -->
+                                            </span>
+                                        <!-- </div> -->
+                                    </fieldset>
+                                </div>
+                            </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

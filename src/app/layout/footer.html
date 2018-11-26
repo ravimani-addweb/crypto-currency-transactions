@@ -1,0 +1,38 @@
+<!-- BEGIN FOOTER -->
+
+<a style="float:right;margin:30px; margin-top: 0px; cursor:pointer;"
+     class="need-help-wrap" 
+     target="_blank"
+     href="mailto:support@depotwallet.com"
+     ng-if="$ctrl._Wallet.current">
+    <img src="../images/need-help.png">
+</a>
+
+<div class="page-footer">
+    <div class="page-footer-inner">
+        <div class="footer-left">
+            <div class="footer-social-icon">
+                <a href="" class="hide"><img src="images/facebook.png"></a>
+                <a href="" class="hide"><img src="images/twitter.png"></a>
+                <a target="_blank" href="mailto:support@depotwallet.com"><img src="images/kontakt.png"></a>
+                <a target="_blank" href="https://t.me/dimcoin"><img src="images/telegram.png"></a>
+            </div>
+        </div>
+        <div class="footer-right">
+            <ul>
+                <li class="footer-desclimer" ng-click="$ctrl.redirect()" style="cursor:pointer">{{ 'FOOTER_DESCLIMER' | translate }}</li>
+                <li class="footer-timezone">{{ 'FOOTER_TIMEZONE' | translate }}</li>
+                <li class="footer-powered-by">{{ 'FOOTER_POWERED_BY_1' | translate }} {{ 'FOOTER_POWERED_BY_2' | translate }}</li>
+                <li class="footer-version">
+                    <span>{{ 'FOOTER_VERSION' | translate }}:</span>
+                    <span>{{ $ctrl._AppConstants.version }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<!-- END FOOTER -->
+</div>

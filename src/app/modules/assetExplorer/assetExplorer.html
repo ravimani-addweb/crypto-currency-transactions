@@ -1,0 +1,68 @@
+<div class="assetexp-page">
+    <div class="container container-top">
+        <div class="wh-form-wrap">
+            <h1 class="page-title"> {{'ASSET_EXPLORER_TITLE' | translate}} </h1>
+
+            <div class="assest-page-wrap">
+                <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+                    <div class="col-xs-12 col-md-12 noPaddingLeft">
+                        <div class="portlet-body">
+                            <div class="tbl-responsive">
+                                <table class="table table-bordered table-hover table-striped table-condensed" style="table-layout:fixed" ng-show="$ctrl._DataBridge.mosaicOwned[$ctrl._Wallet.currentAccount.address]">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ 'GENERAL_NAME' | translate }}</th>
+                                            <th>{{ 'GENERAL_PRICE' | translate }}</th>
+                                            <th>{{'CHANGE' | translate}} (%)</th>
+                                            <th class="buy-th"><img src="images/buy.png"></th>
+                                            <th class="sell-th"><img src="images/sell.png"></th>
+                                            <th class="transfer-th"><img src="images/transfer.png"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="mos in $ctrl.mosaics track by $index">
+                                            <td style="text-overflow: ellipsis; overflow: hidden; text-transform: uppercase;" title="{{mos.id.namespaceId.replace('nem', 'FEES')}}:{{mos.id.name}}">
+                                                <span style="display: inline-block;" ng-if=" mos.id.namespaceId == 'dim' && mos.id.name == 'token'"><img src="images/dim-token.png"></span>
+                                                <span style="display: inline-block;" ng-if=" mos.id.namespaceId == 'dim' && mos.id.name == 'coin'"><img src="images/dimcoin.png"></span>
+                                                <span style="display: inline-block;" ng-if=" mos.id.namespaceId == 'nem' && mos.id.name == 'XEM'"><img src="images/dim-currencies.png"></span>
+                                                <span style="display: inline-block;" ng-if=" mos.id.namespaceId == 'dim' && mos.id.name == 'EUR'"><img src="images/dim-euro.png"></span>
+                                                <span style="display: inline-block;" ng-if=" mos.id.namespaceId == 'dim' && mos.id.name == 'USD'"><img src="images/dim-usd.png"></span>
+                                                <span style="display: inline-block;" ng-if=" mos.id.name == 'hbis-1'"><img src="images/dim-currencies.png"></span>
+                                                <span style="display: inline-block;" ng-if=" mos.id.name == 'hbis-2'"><img src="images/dim-currencies.png"></span>
+                                                <span style="display: inline-block;" ng-if=" mos.id.name == 'hbis-3'"><img src="images/dim-currencies.png"></span>
+                                                <span style="display: inline-block;" ng-if=" mos.id.name == 'is-abc-1'"><img src="images/dim-currencies.png"></span>
+
+                                                <!-- <b>{{mos.id.namespaceId.replace('nem', 'FEES')}}</b>: -->
+                                                <div style="display: inline-block; min-width: 70px; margin-top: 6px;">{{mos.id.name}} {{ mos.name }}</div>
+                                                <!-- <span class="label">{{mos.listType}}</span> -->
+                                            </td>
+                                            <td>
+                                                {{mos.price | number:2}} €
+                                            </td>
+                                            <td>
+                                                <img src="../images/up.png"> {{0.023 + $index }}%
+                                                <!-- <input ng-model="$ctrl.buyAmount[mos.id.name]" ng-init="$ctrl.initializeBuyButtons(mos.id.name)" ng-change="$ctrl.validateBuyQuantity($ctrl.buyAmount[mos.id.name], mos.price, mos.id.name)"><br />
+                                  <small>{{ 'ASSETS_EXPLORER_MAX_QUANTITY' | translate }} : {{ $ctrl.totalDim > 0 ? $ctrl.totalDim / mos.price : 0 }}</small> -->
+                                            </td>
+                                            <!--<td><a class="btn btn-danger" ui-sref="app.transferTransaction">{{ 'GENERAL_SELL' | translate }}</a></td>-->
+                                            <td><a class="buy-th" href="#!/transfer-transactions/buy/{{mos.id.namespaceId}}|{{mos.id.name}}/{{$ctrl.buyAmount[mos.id.name]}}" ng-disabled="$ctrl.buyable[mos.id.name]" ng-click="$ctrl.checkClick($event, mos.id.name)">{{ 'GENERAL_BUY' | translate }}</a></td>
+                                            <td><a class="sell-th">{{ 'GENERAL_SELL' | translate }}</a></td>
+                                            <td><a class="transfer-th">{{ 'MENU_TRANSFER' | translate }}</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel-body" ng-show="!$ctrl.mosaics">
+                                <p style="margin:0;">{{ 'GENERAL_NO_RESULTS' | translate }}</p>
+                            </div>
+                            <div class="panel-footer text-center" style="padding:0;">
+                                &nbsp;
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

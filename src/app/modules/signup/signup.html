@@ -1,0 +1,494 @@
+<div class="signup-page">
+    <div class="container container-top">
+        <div class="wh-form-wrap register-page" ng-show="!$ctrl.childscreen && $ctrl.infopopup">
+            <div class="wh-tab">
+              <!-- <select  class="form-control" ng-model="$ctrl.walletkey" ng-change="$ctrl.changeWalletType($ctrl.walletkey)">
+                <option ng-repeat="wallettypes in $ctrl.walletTypes" ng-selected="$ctrl.walletkey == wallettypes.type" ng-value="wallettypes.type" >{{wallettypes.key| translate}}</option>
+              </select> -->
+                <ul class="nav nav-tabs">
+                    <li ng-class="{active: $ctrl._selectedType.type == 1}">
+                        <a ng-click="$ctrl.changeWalletType('1')">{{ 'BASIC_WALLET' | translate }}</a>
+                    </li>
+                    <li ng-class="{active: $ctrl._selectedType.type == 2}">
+                        <a ng-click="$ctrl.changeWalletType('2')">{{ 'PREMIUM_WALLET' | translate }}</a>
+                    </li>
+                    <li ng-class="{active: $ctrl._selectedType.type == 3}">
+                        <a ng-click="$ctrl.changeWalletType('3')">{{'VIP_WALLET' | translate }}</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- <div class="container"> -->
+            <div class="wh-tab-content" ng-show="$ctrl.mainscreen">
+                <div ng-show="$ctrl._selectedType.type == 1">
+                    <div class="container-494">
+                        <div class="reg-why-basic-wallet">
+                            <h1 class="page-blue-title">{{'BASIC_WALLET_QUESTION' | translate }}</h1>
+                            <span>{{'BASIC_WALLET_ANSWER' | translate }}</span>
+                        </div>
+                        <div class="reg-step">
+                            <h1 class="page-blue-title">{{'BASIC_WALLET_INFO_1' | translate }}</h1>
+                            <div>
+                                <span class="dw-arrow hide"><a href="{{$ctrl.basicvideo}}" target="_blank" >{{'BASIC_WATCH_VIDEO' | translate }}</a></span>
+                                <span class="dw-arrow"><a href="{{$ctrl.basicpdf}}" target="_blank" >{{'BASIC_VIEW_PDF' | translate }}</a></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="blue-wallet-btn btn btn-block" type="submit" ng-click="$ctrl.warnningsteps('basic')">{{ 'BASIC_CONTINUES' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="$ctrl._selectedType.type == 2">
+                    <div class="container-494">
+                        <div class="reg-why-basic-wallet">
+                            <h1 class="page-blue-title">{{'PRIMIUM_WALLET_QUESTION' | translate }}</h1>
+                            <span>{{'PRIMIUM_WALLET_ANSWER' | translate }}</span>
+                        </div>
+                        <div class="reg-step">
+                            <h1 class="page-blue-title">{{'BASIC_WALLET_INFO_1' | translate }}</h1>
+                            <div>
+                                <span class="dw-arrow hide"><a href="{{$ctrl.primiumvideo}}" target="_blank" >{{'BASIC_WATCH_VIDEO' | translate }}</a></span>
+                                <span class="dw-arrow"><a href="{{$ctrl.primiumpdf}}" target="_blank" >{{'BASIC_VIEW_PDF' | translate }}</a></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn blue-wallet-btn btn-block" type="submit" ng-click="$ctrl.warnningsteps('premium')">{{ 'BASIC_CONTINUES' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="$ctrl._selectedType.type == 3">
+                    <div class="container-494">
+                        <div class="reg-why-basic-wallet">
+                            <h1 class="page-blue-title">{{'VIP_WALLET_QUESTION' | translate }}</h1>
+                            <span>{{'VIP_WALLET_ANSWER' | translate }}</span>
+                        </div>
+
+                        <div class="reg-step">
+                          <h1 class="page-blue-title">{{'VIP_WALLET_LOW_FEES_QUESTION' | translate }}</h1>
+                          <span>{{'VIP_WALLET_LOW_FEES_ANSWER' | translate }}</span>
+
+                            <div class="view-price-list">
+                                <span class="dw-arrow">
+                                  <a href="{{$ctrl.viplist}}" target="_blank">{{'VIP_WALLET_PRISE_LIST' | translate }}</a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn blue-wallet-btn btn-block" type="submit" ng-click="$ctrl.warnningsteps('vip')">{{ 'BASIC_CONTINUES' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+                <a id="downloadWallet" target="_blank"></a>
+            </div>
+            <!--Basic Form-->
+            <div class="wh-tab-content" ng-show="!$ctrl.mainscreen && $ctrl.wallettype == 'basic'">
+                <div class="container-494">
+                    <div class="reg-form">
+                        <form>
+                            <fieldset class="form-group">
+                                <h2 class="page-blue-title">{{'BASIC_WALLET_OPEN_ACCOUNT' | translate }}</h2>
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <!-- <div class="input-group"> -->
+                                <!-- <span class="input-group-btn"> -->
+                                <div class="label-info">
+                                    <label for="namespaceParent" class="control-label">{{'FORM_WALLET_NAME_FIELD_PLACEHOLDER' | translate}} </label>
+                                    <span ng-click="$ctrl.infoPass(false,'primium')"><img src="images/info-o.png"></span>
+                                </div>
+                                <!-- </span> -->
+                                <input class="form-control" type="text" images placeholder="{{'FORM_WALLET_NAME_PLACEHOLDER' | translate}}" ng-model="$ctrl.formData.walletName" />
+                                <!-- </div> -->
+                            </fieldset>
+                            <!-- SELECT NETWORK -->
+                            <fieldset class="form-group" style="display: none;">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                      <label for="namespaceParent" class="control-label">{{'SIGNUP_NETWORK_SELECT' | translate}} </label>
+                                    </span>
+                                    <select class="form-control" ng-model="$ctrl.network" ng-change="$ctrl.changeNetwork($ctrl.network)" ng-options="network.id as (network.id | toNetworkName) for network in $ctrl.networks"><option value="" disabled selected>{{'SIGNUP_NETWORK_SELECT' | translate}}</option></select>
+                                </div>
+                            </fieldset>
+                            <!-- PASSWORD FIELD -->
+                            <fieldset class="form-group">
+                                <!-- <div class="input-group"> -->
+                                <!-- <span class="input-group-btn"> -->
+                                <div class="label-info">
+                                    <label>{{ 'FORM_PASSPHRASE_FIELD_PLACEHOLDER' | translate }} </label>
+                                    <span ng-click="$ctrl.infoPass(false,'basic',1)"><img src="images/info-o.png"></span>
+                                </div>
+
+                                <!-- </span> -->
+                                <!-- </div> -->
+                                <input class="form-control pwd ok-password-brain" type="password" placeholder="" ng-model="$ctrl.formData.password" id="password" name="password" ng-pattern="/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z\!\@\#\$\%\^\&\*\(\)\_\+\.\,\;\:\[\]\{\}\<\>\?]{64,}/"
+                                />
+                                <!--{{'FORM_PASSPHRASE_FIELD_PLACEHOLDER' | translate}}-->
+                                <!-- <input type="password" ng-model="pw" name="pw" id="pw"  />
+                                 <ul id="strength" check-strength="pw"></ul> -->
+                                <!-- </div> -->
+                                <span class="strength-meter-text" data-strength="{{passwordStrengthBrain}}">{{passwordstrengthMessage}}</span>
+                                <div class="strength-meter">
+                                    <div class="strength-meter-fill" data-strength="{{passwordStrengthBrain}}"></div>
+                                </div>
+                            </fieldset>
+                            <!-- PASSWORD FIELD CONFIRM -->
+                            <fieldset class="form-group">
+                                <!-- <div class="input-group"> -->
+                                <!-- <span class="input-group-btn"> -->
+                                <label>{{ 'FORM_PASSPHRASE_CONFIRM' | translate }} </label>
+                                <!-- </span> -->
+                                <input class="form-control" type="password" placeholder="" ng-model="$ctrl.formData.confirmPassword" />
+                                <!-- </div> -->
+                                <!--{{'FORM_CONFIRM_PASSPHRASE_FIELD_PLACEHOLDER' | translate}} -->
+                            </fieldset>
+                            <!-- CONFIRM BUTTON -->
+                            <button class="blue-wallet-btn btn pull-xs-right " type="submit" ng-click="$ctrl.createBrainWallet()">
+                              {{'SIGNUP_BRAIN_WALLET_BUTTON' | translate}}
+                                <!-- process-button -->
+                              <!-- <i class="fa {{$ctrl.arrowclass}}"></i> -->
+                            </button>
+                            <div class="process-bar-wrap" ><div class="process-bar green"></div></div>
+                            <!-- createBrainWallet -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--End Basic Form-->
+            <!--Primium Form-->
+            <div class="wh-tab-content" ng-show="!$ctrl.mainscreen  && $ctrl.wallettype == 'premium'">
+                <div class="container-494">
+                    <div class="reg-form">
+                        <!-- SIMPLE WALLET -->
+                        <form>
+                            <fieldset class="form-group">
+                                <h2 class="page-blue-title">{{'PRIMIUM_WALLET_OPEN_ACCOUNT' | translate }}</h2>
+                            </fieldset>
+                            <!-- WALLET NAME -->
+                            <fieldset class="form-group">
+                                <!-- <div class="input-group"> -->
+                                <!-- <span class="input-group-btn"> -->
+                                <div class="label-info">
+                                    <label for="namespaceParent" class="control-label">{{'FORM_WALLET_NAME_FIELD_PLACEHOLDER' | translate}} </label>
+                                    <span ng-click="$ctrl.infoPass(false,'primium')"><img src="images/info-o.png"></span>
+                                </div>
+
+                                <!-- </span> -->
+                                <input class="form-control" type="text" placeholder="{{'FORM_WALLET_NAME_PLACEHOLDER' | translate}}" ng-model="$ctrl.formData.walletName" />
+                                <!-- </div> -->
+                            </fieldset>
+                            <!-- SELECT NETWORK -->
+                            <fieldset class="form-group" style="display: none;">
+                                <!-- <div class="input-group"> -->
+                                <!-- <span class="input-group-btn"> -->
+                                <label for="namespaceParent" class="control-label">{{'SIGNUP_NETWORK_SELECT' | translate}} </label>
+                                <!-- </span> -->
+                                <select class="form-control" ng-model="$ctrl.network" ng-change="$ctrl.changeNetwork($ctrl.network)" ng-options="network.id as (network.id | toNetworkName) for network in $ctrl.networks">
+                                  <option value="" disabled selected>{{'SIGNUP_NETWORK_SELECT' | translate}}</option>
+                                </select>
+                                <!-- </div> -->
+                            </fieldset>
+                            <!-- PASSWORD FIELD -->
+                            <fieldset class="form-group">
+                                <!-- <div class="input-group"> -->
+                                <!-- <span class="input-group-btn"> -->
+                                <div class="label-info">
+                                    <label>{{ 'FORM_PASSWORD' | translate }} </label>
+                                    <span ng-click="$ctrl.infoPass(false,'basic',2)"><img src="images/info-o.png"></span>
+                                </div>
+                                <!-- </span> -->
+                                <input class="form-control pwd ok-password-premium" type="password" placeholder="" ng-model="$ctrl.formData.password" id="password" name="password" ng-pattern="/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z\!\@\#\$\%\^\&\*\(\)\_\+\.\,\;\:\[\]\{\}\<\>\?]{64,}/"
+                                />
+                                <!-- </div> -->
+                                <span class="strength-meter-text" data-strength="{{passwordStrengthPremium}}">{{passwordstrengthMessage}}</span>
+                                <div class="strength-meter">
+                                    <div class="strength-meter-fill" data-strength="{{passwordStrengthPremium}}"></div>
+                                </div>
+
+                                <!-- {{'FORM_SIGNUP_PASSWORD_FIELD_PLACEHOLDER' | translate}}-->
+                            </fieldset>
+                            <!-- PASSWORD FIELD CONFIRM -->
+                            <fieldset class="form-group">
+                                <!-- <div class="input-group"> -->
+                                <!-- <span class="input-group-btn"> -->
+                                <label>{{ 'FORM_PASSWORD_CONFIRM' | translate }} </label>
+                                <!-- </span> -->
+                                <input class="form-control" type="password" placeholder="" ng-model="$ctrl.formData.confirmPassword" />
+                                <!-- </div> -->
+                                <!--{{'FORM_CONFIRM_PASSWORD_FIELD_PLACEHOLDER' | translate}}-->
+                            </fieldset>
+                            <button class="blue-wallet-btn btn btn-success pull-xs-right" type="submit" ng-click="$ctrl.createWallet()">
+                            {{'SIGNUP_CREATE_WALLET_PRIMIUM_BUTTON' | translate}}
+                            <!-- process-button <i class="fa {{$ctrl.arrowclass}}"></i> -->
+                            </button>
+                            <div class="process-bar-wrap" ><div class="process-bar green"></div></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--End Primium Form-->
+            <!--Vip Form-->
+            <div class="wh-tab-content" ng-show="!$ctrl.mainscreen  && $ctrl.wallettype == 'vip'">
+                <div class="container-494">
+                    <div class="reg-form">
+                        <form novalidate>
+                            <fieldset class="form-group">
+                                <h2 class="page-blue-title">{{'VIP_WALLET_OPEN_ACCOUNT' | translate }}</h2>
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label for="namespaceParent" class="control-label">{{'VIP_WALLET_SUBSCRIB_EMAIL_LABEL' | translate}} </label>
+                                <input class="form-control pwd" type="email"
+                                ng-model="$ctrl.subscriberEmail"
+                                ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'
+                                placeholder="{{ 'VIP_WALLET_SUBSCRIB_EMAIL_PLACEHOLDER' | translate }}" novalidate/>
+                            </fieldset>
+                            <button class="blue-wallet-btn btn btn-success pull-xs-right" type="submit" ng-click="$ctrl.subscribeVIP()">
+                                {{'VIP_WALLET_SUBSCRIB_BUTTON' | translate}}
+
+                                <!-- process-button <i class="fa {{$ctrl.arrowclass}}"></i> -->
+                            </button>
+                            <div class="process-bar-wrap" ><div class="process-bar green"></div></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--End vip Form-->
+            <!-- </div> -->
+        </div>
+        <div class="wh-form-wrap padding-20" ng-show="$ctrl.childscreen">
+            <!-- Step 1 -->
+            <div class="wh-tab-content signup-steps" ng-show="$ctrl.childscreen == 1">
+                <div class="icon">
+                    <img src="images/warning-o.png" />
+                </div>
+                <div class="container-585 acc-safety">
+                    <fieldset class="reg-why-basic-wallet">
+                        <h2 class="page-blue-title">{{'ACCOUNT_WARNING_1' | translate }}</h2>
+                        <span>{{'ACCOUNT_WARNING_INFO_1' | translate }}</span>
+                    </fieldset>
+                    <div class="reg-step">
+                        <a href="{{$ctrl.stepbip32}}" target="_blank"><span class="dw-arrow">{{'STEP_BIP32' | translate }}</span></a>
+                    </div>
+                    <fieldset class="form-group">
+                        <button class="btn blue-wallet-btn btn-block" type="submit" ng-click="$ctrl.inforsteps(2)">{{ 'BASIC_CONTINUES' | translate }}</button>
+                    </fieldset>
+                    <fieldset class="reg-step-number">
+                        <span>{{ 'STEP_1' | translate }}</span>
+                    </fieldset>
+                </div>
+            </div>
+            <!--End Step 1  -->
+            <!-- Step 2 -->
+            <div class="wh-tab-content signup-steps" ng-show="$ctrl.childscreen == 2">
+                <div class="icon">
+                    <img src="images/download-o.png" />
+                </div>
+                <div class="container-585 dwld-wlt-file">
+                    <fieldset class="reg-why-basic-wallet">
+                        <h2 class="page-blue-title">{{'ACCOUNT_WARNING_2' | translate }}</h2>
+                        <span class="text-color-gray">{{'ACCOUNT_WARNING_INFO_2_1' | translate }}</span>
+                        <span class="text-color-gray">{{'ACCOUNT_WARNING_INFO_2_2' | translate }}</span>
+                    </fieldset>
+                    <div class="reg-step">
+                        <span style="cursor:pointer;" data-target="#1" class="panel-heading dw-arrow collapsed label-collapsed" aria-expanded="false" data-toggle="collapse">{{'STEP_ROW_FILE' | translate }}</span>
+                        <span style="cursor:pointer;" class="dw-arrow" ng-click="$ctrl.downloadWallet() ">{{'STEP_DOWNLOAD_FILE' | translate }}</span>
+                    </div>
+                    <div class="private-key-number collapse" aria-expanded="false" id="1">
+                        <span class="text-color-blue">{{$ctrl.rowfile}}</span>
+                    </div>
+                    <fieldset class="form-group">
+                        <button class="btn blue-wallet-btn btn-block" type="submit" ng-click='$ctrl.inforsteps(3)'>{{ 'BASIC_CONTINUES' | translate }}</button>
+                    </fieldset>
+                    <fieldset class="reg-step-number">
+                        <span>{{ 'STEP_2' | translate }}</span>
+                    </fieldset>
+                </div>
+            </div>
+            <!--End Step 2 -->
+            <!-- Step 3 -->
+            <div class="wh-tab-content signup-steps" ng-show="$ctrl.childscreen == 3">
+                <div class="icon">
+                    <img src="images/secure-o.png" />
+                </div>
+                <div class="container-585 safe-wlt-external">
+                    <fieldset class="reg-why-basic-wallet">
+                        <h2 class="page-blue-title">{{'ACCOUNT_WARNING_3' | translate }}</h2>
+                        <span>{{'ACCOUNT_WARNING_INFO_3' | translate }}</span>
+                    </fieldset>
+                    <div class="safe-image padding-20">
+                        <img src="images/wtl.file.png">
+                        <img src="images/arrrow_right.png">
+                        <img src="images/usb.png">
+                    </div>
+                    <fieldset class="form-group">
+                        <button class="btn blue-wallet-btn btn-block" type="submit" ng-click='$ctrl.inforsteps(4); $ctrl.downloadWallet()'>{{ 'BASIC_CONTINUES' | translate }}</button>
+                    </fieldset>
+                    <fieldset class="reg-step-number">
+                        <span>{{ 'STEP_3' | translate }}</span>
+                    </fieldset>
+                </div>
+            </div>
+            <!--End Step 3-->
+            <!-- Step 4 -->
+            <div class="wh-tab-content signup-steps" ng-show="$ctrl.childscreen == 4">
+                <div class="icon">
+                    <img src="images/private-key-o.png" />
+                </div>
+                <div class="container-585 private-key">
+                    <fieldset class="reg-why-basic-wallet">
+                        <h2 class="page-blue-title">{{'ACCOUNT_WARNING_4' | translate }}</h2>
+                        <span>{{'ACCOUNT_WARNING_INFO_4' | translate }}</span>
+                    </fieldset>
+                    <div class="reg-step">
+                        <span style="cursor:pointer;" data-target="#2" class="panel-heading dw-arrow collapsed label-collapsed" aria-expanded="false" data-toggle="collapse">{{'STEP_SHOW_PRIVATE_KEY' | translate }}</span>
+                        <a class="dw-arrow" style="cursor:pointer;" ng-click="$ctrl.downloadPK()" id="downloadPK" href="">{{'STEP_DOWNLOAD_PRIVATE_KEY' | translate }}</a>
+                    </div>
+                    <div class="private-key-number collapse" aria-expanded="false" id="2">
+                        <span class="text-color-blue">{{$ctrl.walletPrivateKey}}</span>
+                    </div>
+                    <fieldset class="form-group">
+                        <button class="btn blue-wallet-btn btn-block" type="submit" ng-click="$ctrl.inforsteps(5)">{{ 'BASIC_CONTINUES' | translate }}</button>
+                    </fieldset>
+                    <fieldset class="reg-step-number">
+                        <span>{{ 'STEP_4' | translate }}</span>
+                    </fieldset>
+                </div>
+            </div>
+            <!--End Step 4 -->
+            <!-- Step 5 -->
+            <div class="wh-tab-content signup-steps" ng-show="$ctrl.childscreen == 5">
+                <div class="icon">
+                    <img src="images/secure-o.png" />
+                </div>
+                <div class="container-585 save-private-key-ofl">
+                    <fieldset class="reg-why-basic-wallet" style="margin-bottom: 10px;">
+                        <h2 class="page-blue-title">{{'ACCOUNT_WARNING_5' | translate }}</h2>
+                        <label>{{ 'ACCOUNT_WARNING_4' | translate}}</label><br />
+                        <span style="color: inherit !important;">{{$ctrl.walletPrivateKey}}</span>
+                    </fieldset>
+                    <div class="safe-image padding-20">
+                        <img src="images/private-key.png">
+                        <img src="images/arrrow_right.png">
+                        <img src="images/offline.png">
+                    </div>
+                    <div class="orange-container padding-20" style="margin-top: 20px !important;">
+                        <span>{{'ACCOUNT_WARNING_INFO_5' | translate }}</span>
+                    </div>
+                    <fieldset class="form-group">
+                        <button class="btn blue-wallet-btn btn-block" type="submit" ng-click='$ctrl.inforsteps(6)'>{{ 'BASIC_CONTINUES' | translate }}</button>
+                    </fieldset>
+                    <fieldset class="reg-step-number">
+                        <span>{{ 'STEP_5' | translate }}</span>
+                    </fieldset>
+                </div>
+            </div>
+            <!--End Step 5 -->
+            <!-- Step 6 -->
+            <div class="wh-tab-content signup-steps" ng-show="$ctrl.childscreen == 6">
+                <div class="icon">
+                    <img src="images/finish-o.png" />
+                </div>
+                <div class="container-585 finish-reg">
+                    <fieldset class="reg-why-basic-wallet">
+                        <h2 class="page-blue-title">{{'ACCOUNT_WARNING_6' | translate }}</h2>
+                        <!-- </fieldset> -->
+                        <div class="password-confirmation">
+                            <div class="checkbox">
+                                <div class="input-rc reg-pwd-info">
+                                    <input type="checkbox" name="" class="form-checkbox" value="" ng-model="$ctrl.box.password"> {{ 'ACCOUNT_AGRREE_PASSWORD' | translate }}
+                                    <span class="input-rc-span"></span>
+                                </div>
+                            </div>
+                            <div class="checkbox reg-pwd-info">
+                                <div class="input-rc">
+                                    <input type="checkbox" name="" value="" ng-model="$ctrl.box.walletfile" class="form-checkbox"> {{ 'ACCOUNT_AGRREE_WALLET_FILE' | translate }}
+                                    <span class="input-rc-span"></span>
+                                </div>
+                            </div>
+                            <div class="checkbox reg-pwd-info">
+                                <div class="input-rc">
+                                    <input type="checkbox" name="" value="" class="form-checkbox" ng-model="$ctrl.box.privkey"> {{ 'ACCOUNT_AGRREE_PRIVATE_KEY' | translate }}
+                                    <span class="input-rc-span"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="reg-pwd-info text-color-gray">{{'ACCOUNT_WARNING_INFO_6' | translate }}</span>
+
+                        <!-- <fieldset class="form-group"> -->
+                        <button class="btn blue-wallet-btn btn-block" type="submit" ng-click="$ctrl.redirect()">{{ 'ACCOUNT_COMMON_WALLET_WARNING_CONFIRM' | translate }}</button>
+                    </fieldset>
+                    <fieldset class="reg-step-number">
+                        <span>{{ 'STEP_6' | translate }}</span>
+                    </fieldset>
+                </div>
+            </div>
+            <!--End Step 6 -->
+        </div>
+        <div class="wh-form-wrap padding-20" ng-show="!$ctrl.infopopup && $ctrl.wallettypes == 'basic' && $ctrl.basicwallet == 1">
+            <div class="wh-tab-content acc-safety">
+                <div class="icon" ng-click="$ctrl.infoPass(true,'basic',1)">
+                    <img src="images/close-o.png" class="icon-close" />
+                </div>
+                <div class="container-585">
+                    <fieldset class="reg-why-basic-wallet">
+                        <h2 class="page-blue-title">{{'BASIC_PASSWORD_REQ' | translate }}</h2>
+                        <label><strong>{{ 'BASIC_PASSWORD_QUESTION_1' | translate}}</strong></label>
+                        <label class="text-color-gray" ng-bind-html="'BASIC_PASSWORD_ANSWER_1' | translate"></label>
+                    </fieldset>
+                    <fieldset class="reg-why-basic-wallet">
+                        <div class="orange-container padding-20">
+                            <label><strong>{{ 'BASIC_PASSWORD_QUESTION_2' | translate}}</strong></label>
+                            <label ng-bind-html="'BASIC_PASSWORD_ANSWER_2' | translate"></label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="wh-form-wrap padding-20" ng-show="!$ctrl.infopopup && $ctrl.wallettypes == 'basic' && $ctrl.basicwallet == 2">
+            <div class="wh-tab-content acc-safety">
+                <div class="icon" ng-click="$ctrl.infoPass(true,'basic',2)">
+                    <img src="images/close-o.png" class="icon-close" />
+                </div>
+                <div class="container-585">
+                    <fieldset class="reg-why-basic-wallet">
+                        <h2 class="page-blue-title">{{'PRIMIUM_PASSWORD_REQ' | translate }}</h2>
+                        <label><strong>{{ 'PRIMIUM_PASSWORD_QUESTION_1' | translate}}</strong></label>
+                        <label class="text-color-gray" ng-bind-html="'PRIMIUM_PASSWORD_ANSWER_1' | translate"></label>
+                    </fieldset>
+                    <fieldset class="reg-why-basic-wallet">
+                        <div class="orange-container padding-20">
+                            <label><strong>{{ 'PRIMIUM_PASSWORD_QUESTION_2' | translate}}</strong></label>
+                            <label ng-bind-html="'PRIMIUM_PASSWORD_ANSWER_2' | translate"></label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="wh-form-wrap padding-20" ng-show="!$ctrl.infopopup && $ctrl.wallettypes == 'primium'">
+            <div class="wh-tab-content acc-safety">
+                <div class="icon" ng-click="$ctrl.infoPass(true,'primium')">
+                    <img src="images/close-o.png" class="icon-close" />
+                </div>
+                <div class="container-585">
+                    <fieldset class="reg-why-basic-wallet">
+                        <h2 class="page-blue-title">{{'WALLET_NAME_REQ' | translate }}</h2>
+                        <label><strong>{{ 'WALLET_NAME_QUESTION_1' | translate}}</strong></label>
+                        <label class="text-color-gray" ng-bind-html="'WALLET_NAME_ANSWER_1' | translate"></label>
+                    </fieldset>
+
+                </div>
+            </div>
+        </div>
+        <div class="wh-form-wrap padding-20" ng-show="!$ctrl.infopopup && $ctrl.wallettypes == 'vip'">
+            <div class="wh-tab-content acc-safety">
+                <div class="icon" ng-click="$ctrl.infoPass(true,'vip')">
+                    <img src="images/close-o.png" class="icon-close" />
+                </div>
+                <div class="container-585">
+                    <fieldset class="reg-why-basic-wallet">
+                        <h2 class="page-blue-title">{{'VIP_WALLET_SUBSCRIBE' | translate }}</h2>
+                        <label class="text-color-gray" ng-bind-html="'VIP_WALLET_SUBSCRIBE_INFO' | translate"></label>
+                    </fieldset>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

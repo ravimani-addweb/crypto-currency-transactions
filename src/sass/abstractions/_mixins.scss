@@ -1,0 +1,80 @@
+/**
+ * @file
+ * SCSS file for Mixins.
+ *
+ * All mixins used in SCSS are defined in this file.
+ */
+
+
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}:    -moz-calc(#{$expression});
+  #{$property}:         calc(#{$expression});
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+     -moz-box-shadow: $value;
+      -ms-box-shadow: $value;
+          box-shadow: $value;
+}
+@mixin appearance($value) {
+  -webkit-appearance: $value;
+     -moz-appearance: $value;
+      -ms-appearance: $value;
+          appearance: $value;
+}
+@mixin transform($value) {
+  -webkit-transform: $value;
+     -moz-transform: $value;
+      -ms-transform: $value;
+          transform: $value;
+}
+@mixin transition($value) {
+  -webkit-transition: $value;
+     -moz-transition: $value;
+      -ms-transition: $value;
+          transition: $value;
+}
+
+@mixin flex() {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: flex;
+}
+
+@mixin flex-wrap() {
+  flex-wrap: -webkit-wrap;
+  flex-wrap: -moz-wrap;
+  flex-wrap: -ms-wrap;
+  flex-wrap: wrap;
+}
+@mixin inline-flex {
+ display: -webkit-inline-box;
+ display: -webkit-inline-flex;
+ display: -moz-inline-flex;
+ display: -ms-inline-flexbox;
+ display: inline-flex;
+}
+
+/**
+ * Gradient
+ *
+ * background-vertical = Top to Bottom
+ * background-horizontal = Left to Right
+ * background-diagonal-tl-br = Top-Left to Bottom-Right
+ * background-diagonal-bl-tr = Bottom-Left to Top-Right
+ */
+/*@mixin background-vertical($top, $bottom) {
+  background: $top;
+  background: -webkit-linear-gradient(top, $top 0%, $bottom 100%);
+  background:    -moz-linear-gradient(top, $top 0%, $bottom 100%);
+  background:         linear-gradient(to bottom, $top 0%, $bottom 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0);
+}*/

@@ -1,0 +1,1016 @@
+/**
+ * @file
+ * SCSS file to generate CSS.
+ *
+ * Basic page SCSS
+ * - Register page Design
+ * - Faq page Design
+ * - Assest page Design
+ * - Dimcoin page Design
+ * - Node page Design
+ * - Transfer page Design
+ * - Account page Design
+ * - Login page Design
+ */
+
+/* Login page Design */
+.login-page {
+  .loginButtons {
+    .btn {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+/* Register page Design */
+.register-page {
+ .wh-form-header-wrap {
+  display: inline-block;
+  width: 100%;
+   h1 {
+     float: left;
+     @include calc('width', '100% - 20px');
+     @media (max-width: 767px) {
+      @include calc('width', '100% - 15px');
+     }
+   }
+   .info-icon {
+     float: left;
+     height: 20px;
+     width: 20px;
+     padding: 0;
+     text-align: center;
+     background-color: $blue;
+     color: $white;
+     font-size: 20px;
+     font-weight: 900;
+     font-family: sans-serif;
+     @include border-radius(3px);
+     @media (max-width: 767px) {
+      width: 15px;
+      font-size: 12px;
+     }
+   }
+ }
+ .create-wallet {
+   padding: 10px 16px;
+   font-size: 21px;
+   text-align: center;
+   @include border-radius(4px);
+   @media (max-width: 767px) {
+    padding: 5px;
+    font-size: 16px;
+   }
+   &:focus {
+    background-color: $blue-21 !important;
+   }
+ }
+}
+.signup-page {
+  .icon {
+    text-align: right;
+    img {
+      width: 100px;
+      @media (max-width: 992px) {
+        width: 50px;
+      }
+    }
+  }
+  .wh-form-wrap {
+    .checkboxes {
+      .control-label {
+        position: relative;
+        .input-rc input[type="checkbox"] + .input-rc-span {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 23px;
+          margin: 0 0 0 15px;
+        }
+        .checkbox-label {
+          display: inline-block;
+          padding-left: 60px;
+        }
+      }
+    }
+  }
+}
+/*session message design*/
+.alert-success {
+  background-color: $green-a0;
+  border-color: $green-a0;
+}
+.text-success {
+  color: $green-a0;
+}
+.alert-danger {
+  background-color: $orange !important;
+  border-color: $orange !important;
+  .close {
+    z-index: 99;
+  }
+}
+/*End*/
+.page-content-white {
+
+  /* Faq page Design */
+  .faq-page {
+    h1 {
+      margin: 0;
+      color: $blue-21;
+      font-size: 26px;
+      @media (max-width: 992px) {
+        font-size: 26px;
+      }
+      @media (max-width: 767px) {
+        font-size: 22px;
+      }
+      @media (max-width: 640px) {
+        font-size: 19px;
+      }
+      @media (max-width: 420px) {
+        font-size: 17px;
+      }
+    }
+    &.wh-form-wrap{
+      &::after {
+        /*background-image: url('../images/que-icon.png');*/
+        background-image: url('../images/faq.png');
+      }
+    }
+    .wh-collapse-wrapper {
+      display: inline-block;
+      width: 100%;
+      margin: 35px 0 50px;
+      border-top: 1px solid rgba($gray-3c, .3);
+      @media (max-width: 767px) {
+        margin: 40px 0;
+      }
+      .wh-collapse {
+        margin-bottom: 0 !important;
+        border-top: 1px solid $gray-ed;
+        &:last-child {
+          border-bottom: 1px solid $gray-ed;
+        }
+        .panel-heading {
+          display: inline-block;
+          width: 100%;
+          border-bottom: none !important;
+          .collapse-que {
+            float: left;
+            color: $blue-21;
+            font-size: 21px;
+            @include calc('width', '100% - 25px');
+            @media (max-width: 992px) {
+              font-size: 18px;
+            }
+            @media (max-width: 767px) {
+              font-size: 16px;
+            }
+            @media (max-width: 640px) {
+              font-size: 14px;
+              @include calc('width', '100% - 20px');
+            }
+          }
+          .collapse-plus-icon {
+            float: left;
+            width: 25px;
+            color: $orange;
+            font-size: 42px;
+            font-weight: 300;
+            line-height: 25px;
+            @media (max-width: 640px) {
+              width: 20px;
+              margin-top: -3px;
+              font-size: 40px;
+              line-height: 20px;
+            }
+          }
+        }
+      }
+    }
+    .wh-collapse-ans-show {
+      .panel-body {
+        min-height: 400px;
+        max-width: 500px;
+        padding-top: 35px;
+        font-size: 18px;
+        @media (max-width: 767px) {
+          padding-top: 20px;
+          font-size: 15px;
+        }
+      }
+    }
+    .answer-wrapper {
+      p {
+        font-size: 18px;
+        @media (max-width: 767px) {
+          font-size: 14px;
+        }
+        a {
+          &:link,
+          &:visited {
+            font-size: 18px;
+            color: inherit !important;
+            @media (max-width: 767px) {
+              font-size: 14px;
+            }
+          }
+          &:hover,
+          &:active {
+            font-size: 18px;
+            color: inherit !important;
+            text-decoration: underline;
+            @media (max-width: 767px) {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* Assest page Design */
+  .assetexp-page {
+    .wh-form-wrap {
+      max-width: 900px;
+      &::after {
+        background-image: url("../images/asset-icon.png");
+      }
+      @media (max-width: 1200px) {
+        @include calc('width' , '100% - 100px');
+      }
+    }
+  }
+
+  /* Dimcoin page Design */
+  .dimcoin-page {
+    .wh-form-wrap {
+      min-height: 450px;
+      &::after {
+        background-image: url("../images/exchange.png");
+      }
+      .dimcoin-page-wrap {
+        .blue-wallet-btn {
+          padding: 0;
+          a {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            color: $white;
+            &:hover,
+            &:focus {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+      .doller-icon {
+        float: right;
+        margin-bottom: 0;
+        .exchange{
+          height: auto;
+          margin-right: 0;
+          padding-right: 45px;
+        }
+      }
+      .blue-wallet-btn {
+        margin-top: 30px;
+      }
+      .dimcoin-step {
+        font-size: 20px;
+        text-align: center;
+      }
+    }
+  }
+
+  /* Node page Design */
+  .node-page {
+    .wh-form-wrap {
+      min-height: 450px;
+      &::after {
+        /*background-image: url("../images/node.png");*/
+        background-image: url("../images/node.png");
+      }
+      h1 {
+        font-size: 21px;
+      }
+      label {
+        font-size: 18px;
+      }
+      .node-page-wrap {
+        .modal-body {
+          padding: 0;
+          .doller-icon {
+            margin-bottom: 15px;
+          }
+        }
+        /*.read-only-text {
+          padding:  8px 10px;
+          background-color: $orange;
+          color: $white;
+        }*/
+      }
+    }
+    .doller-icon {
+      .collapse-dropdown {
+        max-width: 100%;
+        padding-right: 0;
+        background-image: none;
+        color: #8A8A87;
+        border: 1px solid rgba(138, 138, 135, 0.5) !important;
+        .collapse-title {
+          min-height: 45px;
+          /*min-height: 45px;*/
+          color: #8A8A87;
+          padding: 6px 12px;
+          font-size: 18px;
+          line-height: 1.42857;
+          /*background-image: none;*/
+          background-image: url('../images/select-down .png');
+          background-repeat: no-repeat;
+          background-size: 20px;
+          background-position: center right 12px;
+        }
+        .collapse-content {
+          top: 45px;
+          border: 1px solid rgba(138, 138, 135, 0.5) !important;
+          li {
+            padding: 10px;
+            font-size: 18px;
+            color: #8A8A87;
+            &.selection-option {
+              &:hover {
+                background-color: $white;
+                color: #8A8A87;
+              }
+            }
+            &:hover {
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+.collapse-content {
+  li {
+    &.selection-option {
+      font-size: 18px;
+      color: #8A8A87;
+      width: 100%;
+      &:hover {
+        background-color: $white;
+        color: #8A8A87;
+      }
+    }
+  }
+}
+  .assetexp-page,
+  .dimcoin-page,
+  .node-page {
+    .wh-form-wrap {
+      padding: 20px;
+      h1 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: $blue-21;
+        font-size: 30px;
+        @media (max-width: 992px) {
+          font-size: 26px;
+        }
+        @media (max-width: 767px) {
+          margin-bottom: 30px;
+          font-size: 22px;
+        }
+        @media (max-width: 640px) {
+          font-size: 19px;
+        }
+        @media (max-width: 420px) {
+          font-size: 17px;
+        }
+      }
+      .assest-page-wrap,
+      .dimcoin-page-wrap,
+      .node-page-wrap {
+        display: inline-block;
+        width: 100%;
+      }
+      .assest-page-wrap {
+        .table {
+          th {
+            border: none;
+            text-align: center;
+            font-size: 18px;
+          }
+          td {
+            padding: 13px 5px;
+            text-align: center;
+            &:last-child {
+              font-family: inherit;
+            }
+          }
+          input {
+            width: 100%;
+          }
+          a {
+            font-size: 18px;
+            font-weight: 100;
+            text-decoration: underline;
+          }
+        }
+        .panel-footer {
+          border: none;
+          background-color: $white;
+        }
+      }
+    }
+  }
+}
+
+/* Transfer page Design */
+.transfer-page {
+  .wh-form-wrap {
+    /*padding: 5px;*/
+    &::after {
+      /*background-image: url("../images/transfer-icon.png");*/
+      background-image: url("../images/transfer-i.png");
+    }
+    .wh-tab {
+      ul {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: flex;
+        width: 100%;
+        -webkit-flex-wrap: wrap;
+           -moz-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+        justify-content: center;
+        @media (max-width: 767px) {
+          display: none;
+        }
+        li {
+          /*@include flex();*/
+          @include inline-flex;
+          @include calc('width', '50% - 2px');
+          @media (max-width: 480px) {
+            width: 100%;
+            margin-right: 0;
+          }
+          a {
+            font-size: 28px;
+            -webkit-align-self: inherit;
+               -moz-align-self: inherit;
+                -ms-align-self: inherit;
+                    align-self: inherit;
+            @media (max-width: 992px) {
+              font-size: 24px;
+            }
+            @media (max-width: 640px) {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+    .wh-tab-content {
+      padding: 0 20px 20px;
+      /*@media (max-width: 767px) {
+        padding: 0;
+      }*/
+      .checkboxes {
+        .encrypt-msg {
+          display: inline-block;
+        }
+        .pull-right {
+          display: inline-block;
+        }
+      }
+      .person-icon-form {
+        position: relative;
+        input { padding-right: 48px; }
+      }
+      .person-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 43px;
+        width: 43px;
+        margin: 1px 1px 0 0;
+        padding: 0;
+        border: none;
+        background-color: $gray-ed;
+        @media (max-width: 767px) {
+          height: 33px;
+          width: 33px;
+        }
+        img {
+          width: 43px;
+          @media (max-width: 767px) {
+            width: 33px;
+          }
+        }
+      }
+      .password,
+      .password-field {
+        /*margin-bottom: 40px;*/
+        .has-error {
+          color: $blue-21;
+          /*border-bottom-color: $gray-ed !important;*/
+        }
+      }
+      .transfer-info-wrap {
+        display: inline-block;
+        width: 100%;
+        margin-top: 10px;
+        color: $blue-21;
+        font-size: 18px;
+        .transfer-info-row {
+          display: inline-block;
+          width: 100%;
+          margin-bottom: 20px;
+          padding-bottom: 20px;
+          border-bottom: 1px solid $gray-ed;
+          &:last-child {
+            border-bottom: none;
+          }
+          .title {
+            margin-bottom: 0;
+            font-size: 21px;
+            font-weight: 500;
+            @media (max-width: 767px) {
+              font-size: 17px;
+            }
+          }
+          .content {
+            @media (max-width: 767px) {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+      .amount-read-only {
+        input {
+          height: 45px;
+          /*border-bottom: 1px solid $gray-ee !important;*/
+          border: 1px solid rgba(138, 138, 135, 0.5) !important;
+          &.border-bottom {
+            border: none !important;
+            border-bottom: 2px solid $gray-ee !important;
+          }
+        }
+      }
+    }
+    .mosaic {
+      height: auto;
+      .panel-heading{ margin-bottom: 15px; }
+    }
+  }
+}
+.login-page,
+.signup-page,
+.account-page {
+  .wh-tab {
+    ul {
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: flex;
+      width: 100%;
+      -webkit-flex-wrap: wrap;
+      -moz-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      justify-content: center;
+      @media (max-width: 767px) {
+        display: none;
+      }
+      li {
+        /*@include inline-flex;*/
+        @include inline-flex;
+        /*display: inline-flex;*/
+        a {
+          background-color: $gray-e2;
+        }
+        &.active {
+          a {
+            background-color: $white;
+          }
+        }
+        a {
+          word-break: break-word;
+          /*height: 100%;*/
+          -webkit-align-self: inherit;
+          -moz-align-self: inherit;
+          -ms-align-self: inherit;
+          align-self: inherit;
+        }
+      }
+    }
+  }
+  .wh-tab-content {
+    @media (max-width: 640px) {
+      padding: 0 20px;
+    }
+    &.acc-safety {
+      @media (max-width: 640px) {
+        padding: 0;
+      }
+    }
+    &.signup-steps {
+      @media (max-width: 640px) {
+        padding: 0;
+      }
+      .orange-container {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .orange-container {
+    margin: 50px 0 25px;
+  }
+}
+.encrypt-decrypt {
+  label {
+    width: 100%;
+  }
+  .reg-why-basic-wallet {
+    margin-bottom: 30px;
+  }
+}
+/* Account page Design */
+.account-page {
+  .wh-form-wrap {
+    /*padding: 5px;*/
+    .icon {
+      padding: 0;
+      /*padding-right: 15px;*/
+    }
+    .wh-tab-content {
+      padding: 0 20px 20px;
+      .collapse-dropdown  {
+        .collapse-content {
+          padding: 0;
+        }
+      }
+      .account-info-wrap {
+        .info-add {
+          span.form-control {
+            span {
+              font-size: 20px;
+            }
+          }
+        }
+        /*.form-control {
+          height: 45px;
+          @media (max-width: 767px) {
+            height: 35px;
+            font-size: 16px
+          }
+        }
+        span {
+          font-size: 21px;
+          opacity: .7;
+          @media (max-width: 767px) {
+            font-size: 16px;
+          }
+        }*/
+        .blue-wallet-btn {
+          margin-top: 30px;
+          &::after {
+            display: none;
+          }
+        }
+      }
+      .account-export-wrap {
+        .blue-wallet-btn {
+          margin-top: 50px;
+          border: none;
+          @media (max-width: 767px) {
+            margin-top: 25px;
+          }
+          &:hover {
+            background-color: $orange !important;
+            opacity: 1;
+          }
+        }
+        .export-grid {
+          float: left;
+          width: 33.33%;
+          text-align: center;
+          @media (max-width: 480px) {
+            width: 100%;
+            margin-bottom: 20px;
+          }
+          img {
+            width: 100px;
+          }
+          /*&:nth-child(2) {
+            text-align: center;
+          }
+          &:nth-child(3) {
+            text-align: right;
+          }*/
+          .title {
+            margin: 15px 5px 0;
+            font-size: 18px;
+          }
+        }
+      }
+      .account-private-key-wrap,
+      .account-backup-wrap {
+        .blue-wallet-btn {
+          margin-top: 40px;
+          @include border-radius(8px);
+        }
+        .orange-container {
+          min-height: 175px;
+          margin-top: 0;
+          margin-bottom: 20px;
+        }
+      }
+      .account-private-key-wrap {
+        .blue-wallet-btn {
+          border: none;
+          background-color: $blue-21;
+          @include border-radius(8px);
+          .fa-minus {
+            margin-top: 7px;
+          }
+        }
+      }
+    }
+  }
+  .account-backup-wrap {
+    .collapse-content {
+      padding: 10px 15px !important;
+    }
+  }
+}
+
+
+/* Login page Design */
+.login-icon {
+  .wh-form-wrap {
+    &::after {
+      /*background-image: url("../images/key-icon.png");*/
+      /*background-image: url('../images/private-key-o.png');*/
+      background-image: url('../images/login.png');
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+  }
+}
+
+
+/**
+ * New theme design
+ */
+
+/* Login page design */
+.forget-pwd {
+  display: inline-block;
+  width: 100%;
+  margin-top: 8px;
+  text-align: center;
+  a {
+    display: inline-block;
+    color: $gray-3c;
+    font-size: 18px;
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
+    @media (max-width: 480px) {
+      width: 100%;
+      margin-bottom: 6px;
+    }
+    &.recover-link {
+      text-decoration: underline;
+    }
+  }
+}
+.premium-tab,
+.vip-tab {
+  .pwd-field {
+    margin-top: 48px;
+  }
+}
+
+/* FAQ Page */
+.wh-collapse-wrapper {
+  .panel-default {
+    border-bottom: 1px solid rgba($gray-3c, .3) !important;
+    > .panel-heading {
+      padding: 16px 40px 16px 10px;
+      background-color: $gray-ef !important;
+      color: $blue;
+      font-size: 18px;
+      font-weight: 400;
+      border-bottom: none !important;
+      background-image: url('../images/minus.png');
+      background-repeat: no-repeat;
+      background-size: 28px;
+      background-position: center right 10px;
+      font-weight: 600;
+      @media (max-width: 767px) {
+        padding: 14px 30px 14px 8px;
+        background-size: 20px;
+        font-size: 16px;
+      }
+      &.collapsed {
+        background-color: $white !important;
+        background-image: url('../images/plus.png');
+        font-weight: 400;
+      }
+    }
+    .panel-body {
+      padding: 0;
+      color: $gray-3c;
+      font-size: 18px;
+      p {
+        @media (max-width: 767px) {
+          /*margin: 0;*/
+          font-size: 14px;
+        }
+      }
+      ul {
+        li {
+          @media (max-width: 767px) {
+            margin: 0;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Sign up design */
+.register-page {
+  .blue-wallet-btn {
+    margin-bottom: 50px;
+  }
+}
+/*.reg-why-basic-wallet,*/
+.reg-step {
+  display: inline-block;
+  width: 100%;
+  margin-top: 28px;
+  span,
+  a {
+    color: #8A8A87;
+    font-size: 17px;
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+    a {
+      color: $gray-3c;
+      font-size: 18px;
+      @media (max-width: 767px) {
+        font-size: 14px;
+      }
+    }
+  }
+  .view-price-list {
+    display: inline-block;
+    width: 100%;
+    padding-top: 30px;
+  }
+}
+.reg-why-basic-wallet {
+  /*margin-bottom: 46px;
+  margin-bottom: 8px;*/
+  .detail-wrap {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+.reg-step-number,
+.reg-why-basic-wallet {
+  span {
+    /*color: $gray-3c;*/
+    color: #8A8A87;
+    font-size: 17px;
+    font-weight: 100;
+    line-height: 22px;
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+  }
+}
+.reg-step-number {
+  display: inline-block;
+  width: 100%;
+  margin: 5px 0 0;
+  text-align: center;
+}
+.reg-step {
+  .dw-arrow {
+    float: left;
+    width: 50%;
+    padding: 0 5px 0 35px;
+    /*padding-bottom: 0;*/
+    border-bottom: none !important;
+    text-decoration: underline;
+    margin-bottom: 5px;
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 15px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.reg-form {
+  display: inline-block;
+  width: 100%;
+  .form-group {
+    margin-bottom: 25px;
+  }
+}
+.acc-safety {
+  .reg-step {
+    .dw-arrow {
+      width: 100%;
+    }
+  }
+  .collapse-content {
+    padding: 0;
+  }
+}
+.safe-wlt-external,
+.save-private-key-ofl {
+  .safe-image {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    img {
+      margin-right: 35px;
+      &:last-child {
+        margin-right: 0;
+        @media (max-width: 480px) {
+          margin: 0 auto 20px;
+        }
+      }
+      @media (max-width: 767px) {}
+      @media (max-width: 480px) {
+        display: block;
+        margin: 0 auto 20px;
+      }
+    }
+  }
+}
+.save-private-key-ofl {
+  .reg-why-basic-wallet {
+    label {
+      color: $blue;
+      font-size: 21px;
+    }
+    span {
+      display: inline-block;
+      width: 100%;
+      font-size: 21px;
+      word-break: break-all;
+    }
+  }
+  .orange-container {
+    margin-top: 50px;
+  }
+}
+.private-key-number {
+  margin-top: 36px;
+  color: $blue;
+  font-size: 18px;
+  word-break: break-all;
+}
+.password-confirmation {
+  color: $gray-3c;
+  font-size: 21px;
+   .checkbox {
+    width: 100%;
+    margin-bottom: 25px;
+    .input-rc {
+      padding-left: 30px;
+      text-decoration: underline;
+      font-size: 19px;
+      input[type="checkbox"] + .input-rc-span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 3px 10px 0 0;
+        vertical-align: top;
+      }
+    }
+  }
+}
+.finish-reg {
+  .password-confirmation {
+    .checkbox {
+      color: $blue;
+      font-size: 21px;
+    }
+  }
+}
